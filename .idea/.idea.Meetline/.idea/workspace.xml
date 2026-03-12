@@ -6,7 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd5a5c37-b62a-4478-a061-c334558512d9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Meetline.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/Meetline.slnx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Meetline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Meetline/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Web.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Web.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +22,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Web/Configs/OpenApiConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
 }]]></component>
@@ -29,6 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.Web: http.executor": "Run",
     ".NET Launch Settings Profile.Web: https.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -36,7 +43,7 @@
     "git-widget-placeholder": "master"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Web: https">
+  <component name="RunManager" selected=".NET Launch Settings Profile.Web: http">
     <configuration name="Web: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Web/Web.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net10.0" />
@@ -102,7 +109,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1773356153495</updated>
-      <workItem from="1773356154841" duration="453000" />
+      <workItem from="1773356154841" duration="1762000" />
     </task>
     <task id="LOCAL-00001" summary="init: repo init">
       <option name="closed" value="true" />
@@ -120,15 +127,35 @@
       <option name="project" value="LOCAL" />
       <updated>1773356264407</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: add application, domain and infra class library projects">
+      <option name="closed" value="true" />
+      <created>1773356648499</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773356648499</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="init: repo init" />
     <MESSAGE value="clean: remove default http file" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean: remove default http file" />
+    <MESSAGE value="feat: add application, domain and infra class library projects" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add application, domain and infra class library projects" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
