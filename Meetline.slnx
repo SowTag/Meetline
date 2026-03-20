@@ -2,6 +2,7 @@
     <Folder Name="/Solution Items/">
         <File Path="compose.yaml"/>
     </Folder>
+    <Project Path="Application.Tests/Application.Tests.csproj"/>
     <Project Path="Application/Application.csproj"/>
     <Project Path="Domain/Domain.csproj"/>
     <Project Path="Infrastructure/Infrastructure.csproj"/>
