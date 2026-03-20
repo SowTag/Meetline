@@ -1,12 +1,18 @@
+using System.Text.Json;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Json;
 using Scalar.AspNetCore;
 using Web.Configs;
 using Web.Endpoints;
 using Web.Endpoints.V1;
+using Web.Filters;
+using Web.Scopes;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddMediator(options => { options.ServiceLifetime = ServiceLifetime.Scoped; });
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -22,19 +28,32 @@ builder.Services
     .AddOpenApi(OpenApiConfiguration.Configure)
     .AddApiVersioning(ApiVersioningConfiguration.Configure);
 
+builder.Services.AddProblemDetails();
+
+builder.Services.Configure<JsonOptions>(options =>
+{
+    options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+});
+
+builder.Services.AddScoped<CurrentUserScope>();
+
 var app = builder.Build();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseExceptionHandler();
+
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+    app.MapOpenApi().AllowAnonymous();
+    app.MapScalarApiReference().AllowAnonymous();
 
     app.MapGroup("/_debug").AllowAnonymous().MapDebugV1Endpoints();
 }
 
-app.MapEndpoints();
+var root = app.MapGroup("").AddEndpointFilter<UserScopeInitializationFilter>();
+
+root.MapEndpoints();
 
 app.Run();

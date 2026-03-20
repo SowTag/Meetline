@@ -10,6 +10,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "http-prod": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5200"
+    },
     "https": {
       "commandName": "Project",
       "dotnetRunMessages": true,

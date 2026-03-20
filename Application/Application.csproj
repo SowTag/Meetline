@@ -7,7 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentResults" Version="4.0.0"/>
         <PackageReference Include="Mediator.Abstractions" Version="3.0.1"/>
+        <PackageReference Include="Riok.Mapperly" Version="4.3.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Domain\Domain.csproj"/>
     </ItemGroup>
 
 </Project>

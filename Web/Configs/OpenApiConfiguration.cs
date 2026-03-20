@@ -7,7 +7,7 @@ public static class OpenApiConfiguration
 {
     public static void Configure(OpenApiOptions options)
     {
-        options.AddDocumentTransformer((document, context, cancellationToken) =>
+        options.AddDocumentTransformer((document, _, _) =>
         {
             document.Info.Title = "Meetline";
             document.Info.Version = "v0.0.1";
