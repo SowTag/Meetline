@@ -10,7 +10,7 @@ public static class UserEndpoints
     public static void MapUserEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGet("/me", GetCurrentUser);
-        app.MapGet("/{id:guid}", GetUserById).AllowAnonymous();
+        app.MapGet("/{id:guid}", GetUserById);
     }
 
     private static async Task<IResult> GetCurrentUser(Mediator.Mediator mediator, CurrentUserScope scope)
