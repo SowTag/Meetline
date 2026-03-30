@@ -22,7 +22,7 @@ public readonly record struct PermissionSet
     /// </summary>
     public static PermissionSet FromBytes(byte[] bytes)
     {
-        return new PermissionSet(new BigInteger(bytes, true, false));
+        return new PermissionSet(new BigInteger(bytes, true));
     }
 
     /// <summary>
@@ -30,7 +30,7 @@ public readonly record struct PermissionSet
     /// </summary>
     public byte[] ToByteArray()
     {
-        return _bits.ToByteArray(true, false);
+        return _bits.ToByteArray(true);
     }
 
     /// <summary>
