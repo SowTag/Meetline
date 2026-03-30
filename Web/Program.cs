@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Json;
 using Scalar.AspNetCore;
 using Web.Configs;
+using Web.Converters;
 using Web.Endpoints;
 using Web.Endpoints.V1;
 using Web.Filters;
@@ -33,6 +34,7 @@ builder.Services.AddProblemDetails();
 builder.Services.Configure<JsonOptions>(options =>
 {
     options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+    options.SerializerOptions.Converters.Add(new PermissionSetJsonConverter());
 });
 
 builder.Services.AddScoped<CurrentUserScope>();
