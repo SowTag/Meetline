@@ -1,10 +1,15 @@
 using System.Text.Json;
+using Application.Common.Caching;
+using Application.Common.PipelineBehaviors;
+using FluentValidation;
 using Infrastructure;
+using Mediator;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Json;
 using Scalar.AspNetCore;
 using Web.Configs;
+using Web.Converters;
 using Web.Endpoints;
 using Web.Endpoints.V1;
 using Web.Filters;
@@ -13,6 +18,10 @@ using Web.Scopes;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMediator(options => { options.ServiceLifetime = ServiceLifetime.Scoped; });
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+builder.Services.AddValidatorsFromAssembly(typeof(ICacheService).Assembly);
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -33,6 +42,7 @@ builder.Services.AddProblemDetails();
 builder.Services.Configure<JsonOptions>(options =>
 {
     options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+    options.SerializerOptions.Converters.Add(new PermissionSetJsonConverter());
 });
 
 builder.Services.AddScoped<CurrentUserScope>();

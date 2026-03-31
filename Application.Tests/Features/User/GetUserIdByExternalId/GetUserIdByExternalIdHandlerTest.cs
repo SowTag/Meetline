@@ -46,7 +46,6 @@ public class GetUserIdByExternalIdHandlerTest
         "Should return a result of the NotFound variant when the user doesn't exist")]
     public async Task Handle_WhenUserDoesNotExist_ShouldReturnNotFoundError()
     {
-        var userId = Guid.NewGuid();
         const string externalId = "idp|external-id-1234";
 
         var query = new GetUserIdByExternalIdQuery(externalId);
