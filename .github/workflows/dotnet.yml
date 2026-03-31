@@ -8,9 +8,9 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
     
-    # Required permissions for dorny/test-reporter to create UI checks
     permissions:
       contents: read
       actions: read
