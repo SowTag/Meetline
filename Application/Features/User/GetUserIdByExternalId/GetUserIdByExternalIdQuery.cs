@@ -1,3 +1,5 @@
+using Application.Common.Caching;
+using Application.Common.Caching.Keys;
 using FluentResults;
 using Mediator;
 
@@ -7,4 +9,10 @@ namespace Application.Features.User.GetUserIdByExternalId;
 ///     A query for getting a user's internal ID from their external ID
 /// </summary>
 /// <param name="ExternalId">The user's external ID</param>
-public record GetUserIdByExternalIdQuery(string ExternalId) : IQuery<Result<GetUserIdByExternalIdResponse>>;
+public record GetUserIdByExternalIdQuery(string ExternalId)
+    : IQuery<Result<GetUserIdByExternalIdResponse>>, ICachableRequest
+{
+    public string CacheKey => UserCacheKeys.ByExternalId(ExternalId);
+    public TimeSpan? AbsoluteExpiration => null;
+    public TimeSpan? SlidingExpiration => TimeSpan.FromMinutes(30);
+}

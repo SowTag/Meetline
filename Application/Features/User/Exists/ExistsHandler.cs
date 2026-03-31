@@ -8,8 +8,6 @@ public class ExistsHandler(IUserRepository repository) : IQueryHandler<ExistsQue
 {
     public async ValueTask<Result<ExistsResponse>> Handle(ExistsQuery query, CancellationToken cancellationToken)
     {
-        // TODO: Properly cache this when I have the pipeline behavior set up
-
         var exists = await repository.ExistsAsync(query.Id, cancellationToken);
 
         return exists ? Result.Ok() : Result.Fail(ExistsErrors.UserNotFoundError(query.Id));

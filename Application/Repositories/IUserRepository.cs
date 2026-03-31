@@ -27,4 +27,12 @@ public interface IUserRepository
     /// <param name="ct">The cancellation token</param>
     /// <returns>True if the user exists, false otherwise</returns>
     Task<bool> ExistsAsync(Guid id, CancellationToken ct);
+
+    /// <summary>
+    ///     Creates a user
+    /// </summary>
+    /// <param name="user">The user to create</param>
+    /// <param name="ct">The cancellation token</param>
+    /// <returns></returns>
+    Task CreateAsync(User user, CancellationToken ct);
 }
