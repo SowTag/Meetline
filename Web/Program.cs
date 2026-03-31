@@ -47,6 +47,8 @@ builder.Services.Configure<JsonOptions>(options =>
 
 builder.Services.AddScoped<CurrentUserScope>();
 
+builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
+
 var app = builder.Build();
 
 app.UseAuthentication();
