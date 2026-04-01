@@ -33,7 +33,7 @@ const shortcuts = [
     icon: <TeamsIcon />,
     href: 'https://teams.cloud.microsoft',
   },
-];
+]
 
 export function SidebarShortcuts({
   showLabel = true,

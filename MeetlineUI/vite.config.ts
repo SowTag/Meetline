@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
   server: {
-    allowedHosts: ['meetline.maddock.world']
+    allowedHosts: ['meetline.maddock.world'],
   },
   plugins: [
     devtools(),

@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as AuthCallbackRouteImport } from './routes/auth/callback'
 import { Route as AuthSidebarRouteImport } from './routes/_auth/_sidebar'
 import { Route as AuthSidebarIndexRouteImport } from './routes/_auth/_sidebar/index'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/auth/callback',
+  path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthSidebarRoute = AuthSidebarRouteImport.update({
@@ -29,26 +35,35 @@ const AuthSidebarIndexRoute = AuthSidebarIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthSidebarIndexRoute
+  '/auth/callback': typeof AuthCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AuthSidebarIndexRoute
+  '/auth/callback': typeof AuthCallbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_auth': typeof AuthRouteWithChildren
   '/_auth/_sidebar': typeof AuthSidebarRouteWithChildren
+  '/auth/callback': typeof AuthCallbackRoute
   '/_auth/_sidebar/': typeof AuthSidebarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/auth/callback'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_auth' | '/_auth/_sidebar' | '/_auth/_sidebar/'
+  to: '/' | '/auth/callback'
+  id:
+    | '__root__'
+    | '/_auth'
+    | '/_auth/_sidebar'
+    | '/auth/callback'
+    | '/_auth/_sidebar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
+  AuthCallbackRoute: typeof AuthCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +73,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/auth/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_auth/_sidebar': {
@@ -101,6 +123,7 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
+  AuthCallbackRoute: AuthCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

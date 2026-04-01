@@ -21,7 +21,9 @@ function Index() {
             <h1 className={'text-xl font-semibold px-1'}>Chats</h1>
             <div className={'relative'}>
               <Search
-                className={'absolute left-2.5 top-2 size-4 text-muted-foreground'}
+                className={
+                  'absolute left-2.5 top-2 size-4 text-muted-foreground'
+                }
               />
               <Input placeholder={'Search chats...'} className={'pl-8'} />
             </div>
@@ -40,7 +42,9 @@ function Index() {
                     'size-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0'
                   }
                 >
-                  <span className={'text-primary font-medium text-sm'}>C{i}</span>
+                  <span className={'text-primary font-medium text-sm'}>
+                    C{i}
+                  </span>
                 </div>
                 <div className={'flex-1 min-w-0'}>
                   <div className={'flex items-center justify-between gap-2'}>

@@ -38,12 +38,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
       {
         rel: 'icon',
-        href: '/favicon.svg'
+        href: '/favicon.svg',
       },
       {
         rel: 'manifest',
-        href: '/manifest.json'
-      }
+        href: '/manifest.json',
+      },
     ],
   }),
   shellComponent: RootDocument,
