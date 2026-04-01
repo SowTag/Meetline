@@ -28,7 +28,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Meetline',
       },
     ],
     links: [
@@ -36,6 +36,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'icon',
+        href: '/favicon.svg'
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.json'
+      }
     ],
   }),
   shellComponent: RootDocument,

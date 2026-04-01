@@ -9,50 +9,98 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as AuthSidebarRouteImport } from './routes/_auth/_sidebar'
+import { Route as AuthSidebarIndexRouteImport } from './routes/_auth/_sidebar/index'
 
-const IndexRoute = IndexRouteImport.update({
+const AuthRoute = AuthRouteImport.update({
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSidebarRoute = AuthSidebarRouteImport.update({
+  id: '/_sidebar',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthSidebarIndexRoute = AuthSidebarIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AuthSidebarRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof AuthSidebarIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof AuthSidebarIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteWithChildren
+  '/_auth/_sidebar': typeof AuthSidebarRouteWithChildren
+  '/_auth/_sidebar/': typeof AuthSidebarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
   to: '/'
-  id: '__root__' | '/'
+  id: '__root__' | '/_auth' | '/_auth/_sidebar' | '/_auth/_sidebar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/_sidebar': {
+      id: '/_auth/_sidebar'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthSidebarRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/_sidebar/': {
+      id: '/_auth/_sidebar/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AuthSidebarIndexRouteImport
+      parentRoute: typeof AuthSidebarRoute
     }
   }
 }
 
+interface AuthSidebarRouteChildren {
+  AuthSidebarIndexRoute: typeof AuthSidebarIndexRoute
+}
+
+const AuthSidebarRouteChildren: AuthSidebarRouteChildren = {
+  AuthSidebarIndexRoute: AuthSidebarIndexRoute,
+}
+
+const AuthSidebarRouteWithChildren = AuthSidebarRoute._addFileChildren(
+  AuthSidebarRouteChildren,
+)
+
+interface AuthRouteChildren {
+  AuthSidebarRoute: typeof AuthSidebarRouteWithChildren
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthSidebarRoute: AuthSidebarRouteWithChildren,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AuthRoute: AuthRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
