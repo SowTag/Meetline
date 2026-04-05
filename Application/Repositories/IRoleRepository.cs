@@ -6,5 +6,5 @@ public interface IRoleRepository
 {
     Task<List<Role>> GetRolesAsync(CancellationToken ct);
     Task<Role?> GetRoleByIdAsync(Guid id, CancellationToken ct);
-    Task AddRoleAsync(Role role, CancellationToken ct);
+    Task CreateRoleAsync(Role role, CancellationToken ct);
 }

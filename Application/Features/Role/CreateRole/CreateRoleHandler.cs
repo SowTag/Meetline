@@ -20,7 +20,7 @@ public class CreateRoleHandler(IRoleRepository repository) : ICommandHandler<Cre
             Permissions = command.Permissions
         };
 
-        await repository.AddRoleAsync(role, cancellationToken);
+        await repository.CreateRoleAsync(role, cancellationToken);
 
         return Result.Ok(role.Id);
     }

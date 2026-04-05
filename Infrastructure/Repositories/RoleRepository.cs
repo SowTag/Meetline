@@ -17,7 +17,7 @@ public class RoleRepository(ApplicationDbContext context) : IRoleRepository
         return context.Roles.FirstOrDefaultAsync(r => r.Id == id, ct);
     }
 
-    public async Task AddRoleAsync(Role role, CancellationToken ct)
+    public async Task CreateRoleAsync(Role role, CancellationToken ct)
     {
         await context.Roles.AddAsync(role, ct);
         await context.SaveChangesAsync(ct);
