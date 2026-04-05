@@ -6,7 +6,6 @@ using Application.Features.User.GetOwnUserById;
 using Application.Features.User.GetUserById;
 using Application.Features.User.OnboardUser;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Web.Extensions;
 using Web.Scopes;
 
@@ -64,7 +63,7 @@ public static class UserEndpoints
         Onboard(
             Mediator.Mediator mediator,
             HttpContext context,
-            [FromBody] CreateUserRequest request)
+            CreateUserRequest request)
     {
         var externalId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value
                          ?? context.User.FindFirst("sub")?.Value;
