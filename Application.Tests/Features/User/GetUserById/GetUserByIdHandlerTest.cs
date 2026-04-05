@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
+using Application.Features.User.DTOs.UserPublicResponse;
 using Application.Features.User.GetUserById;
 using Application.Repositories;
 using JetBrains.Annotations;
@@ -28,7 +29,13 @@ public class GetUserByIdHandlerTest
         var userId = Guid.NewGuid();
         var query = new GetUserByIdQuery(userId);
 
-        var expectedUser = new Domain.Entities.User { Id = userId };
+        var expectedUser = new Domain.Entities.User
+        {
+            Id = userId,
+            ExternalId = null!,
+            Username = null!,
+            Email = null!
+        };
 
         _repositoryMock
             .Setup(repo => repo.GetUserById(query.Id, It.IsAny<CancellationToken>()))
@@ -38,7 +45,7 @@ public class GetUserByIdHandlerTest
 
         Assert.True(result.IsSuccess);
         Assert.NotNull(result.Value);
-        Assert.IsType<GetUserByIdResponse>(result.Value);
+        Assert.IsType<UserPublicResponse>(result.Value);
         Assert.Equal(userId, result.Value.Id);
     }
 

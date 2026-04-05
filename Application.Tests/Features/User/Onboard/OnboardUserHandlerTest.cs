@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Errors;
+using Application.Features.User.DTOs.CreateUserRequest;
 using Application.Features.User.OnboardUser;
 using Application.Repositories;
 using Moq;
@@ -23,7 +24,11 @@ public class OnboardUserHandlerTest
     [Fact(DisplayName = "Should return OK when the user is not onboarded")]
     public async Task Handle_UserIsNotOnboarded_ShouldReturnOk()
     {
-        var command = new OnboardUserCommand("idp|123456", "user", "user@test.com", "First", "Last");
+        var command = new OnboardUserCommand(new CreateUserRequest
+        {
+            Username = "someone",
+            Email = "someone@example.com"
+        }, "idp|123456");
 
         _repositoryMock
             .Setup(repo => repo.GetUserIdFromExternalId(command.ExternalId, It.IsAny<CancellationToken>()))
@@ -39,7 +44,11 @@ public class OnboardUserHandlerTest
     [Fact(DisplayName = "Should return Conflict when the user is already onboarded")]
     public async Task Handle_UserIsAlreadyOnboarded_ShouldReturnConflict()
     {
-        var command = new OnboardUserCommand("idp|123456", "user", "user@test.com", "First", "Last");
+        var command = new OnboardUserCommand(new CreateUserRequest
+        {
+            Username = "someone",
+            Email = "someone@example.com"
+        }, "idp|123456");
 
         _repositoryMock
             .Setup(repo => repo.GetUserIdFromExternalId(command.ExternalId, It.IsAny<CancellationToken>()))
