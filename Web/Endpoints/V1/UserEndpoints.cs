@@ -39,14 +39,14 @@ public static class UserEndpoints
                              This endpoint is public and should be called after successful external authentication.
                              """);
 
-        users.MapGet("/availability", GetUsernameAvailability)
+        users.MapGet("/username-availability", GetUsernameAvailability)
             .AllowNonRegistered()
             .WithName("UsernameAvailability")
             .WithSummary("Check the availability of a username")
             .WithDescription(
                 "Checks whether a username is available or not, to be used with a frontend's input field");
 
-        users.MapGet("/availability", GetEmailAvailability)
+        users.MapGet("/email-availability", GetEmailAvailability)
             .AllowNonRegistered()
             .WithName("EmailAvailability")
             .WithSummary("Check the availability of an email")
