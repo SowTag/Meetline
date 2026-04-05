@@ -16,7 +16,7 @@ public static class UserEndpoints
 {
     public static void MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        var users = app.MapGroup("/users")
+        var users = app.MapGroup("")
             .WithTags("Users");
 
         users.MapGet("/me", GetCurrentUser)
