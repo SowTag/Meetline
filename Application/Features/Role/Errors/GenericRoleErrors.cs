@@ -2,7 +2,7 @@ using Application.Errors;
 
 namespace Application.Features.Role;
 
-public static class RoleErrors
+public static class GenericRoleErrors
 {
     public static ApplicationError RoleNotFound(Guid id)
     {
