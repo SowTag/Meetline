@@ -12,13 +12,37 @@
   },
   "servers": [
     {
-      "url": "http://meetline.maddock.world/"
+      "url": "http://localhost:5200/"
     }
   ],
   "paths": {
-    "/_debug/endpoints": {
+    "/api/_debug/endpoints": {
       "get": {
-        "tags": ["Web"],
+        "tags": [
+          "Web"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/_debug/validation": {
+      "get": {
+        "tags": [
+          "Web"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidatedBody"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -28,17 +52,34 @@
     },
     "/api/users/me": {
       "get": {
-        "tags": ["UserEndpoints"],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get the currently authenticated user",
+        "description": "Returns the full profile of the user making the request. Requires a valid JWT token.",
+        "operationId": "GetCurrentUser",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/users/{id}": {
       "get": {
-        "tags": ["UserEndpoints"],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by ID",
+        "description": "Retrieves a user profile by their unique identifier.",
+        "operationId": "GetUserById",
         "parameters": [
           {
             "name": "id",
@@ -52,62 +93,122 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPublicResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
     },
     "/api/users/onboard": {
       "post": {
-        "tags": ["UserEndpoints"],
+        "tags": [
+          "Users"
+        ],
+        "summary": "Onboard a new user",
+        "description": "Creates a new user account linked to an external identity (e.g. from Auth0, Firebase, etc.).\nThis endpoint is public and should be called after successful external authentication.",
+        "operationId": "OnboardUser",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/OnboardUserRequest"
+                "$ref": "#/components/schemas/CreateUserRequest"
               }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
           }
         }
       }
     },
     "/api/roles": {
       "get": {
-        "tags": ["RoleEndpoints"],
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get a list of available roles",
+        "description": "Returns a list of all available roles.",
+        "operationId": "GetRoles",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoleResponse"
+                  }
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "tags": ["RoleEndpoints"],
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Create a role",
+        "description": "Tries to create a role, doing permission checks in the middle.",
+        "operationId": "CreateRole",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateRoleCommand"
+                "$ref": "#/components/schemas/CreateRoleRequest"
               }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleResponse"
+                }
+              }
+            }
           }
         }
       }
     },
     "/api/roles/{id}": {
       "get": {
-        "tags": ["RoleEndpoints"],
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get a role by its ID",
+        "description": "Returns a role's details given its ID.",
+        "operationId": "GetRoleById",
         "parameters": [
           {
             "name": "id",
@@ -121,7 +222,17 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -129,8 +240,13 @@
   },
   "components": {
     "schemas": {
-      "CreateRoleCommand": {
-        "required": ["name", "hoist", "position", "permissions"],
+      "CreateRoleRequest": {
+        "required": [
+          "name",
+          "hoist",
+          "position",
+          "permissions"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -141,22 +257,24 @@
           },
           "position": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": ["integer", "string"],
+            "type": [
+              "integer",
+              "string"
+            ],
             "format": "int32"
           },
           "permissions": {
             "$ref": "#/components/schemas/PermissionSet"
-          },
-          "cache_keys_to_invalidate": {
-            "type": ["null", "array"],
-            "items": {
-              "type": "string"
-            }
           }
         }
       },
-      "OnboardUserRequest": {
-        "required": ["username", "email", "first_name", "last_name"],
+      "CreateUserRequest": {
+        "required": [
+          "username",
+          "email",
+          "first_name",
+          "last_name"
+        ],
         "type": "object",
         "properties": {
           "username": {
@@ -166,14 +284,158 @@
             "type": "string"
           },
           "first_name": {
-            "type": ["null", "string"]
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "last_name": {
-            "type": ["null", "string"]
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },
-      "PermissionSet": {}
+      "PermissionSet": {},
+      "RoleResponse": {
+        "required": [
+          "id",
+          "name",
+          "hoist",
+          "position",
+          "permissions"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "hoist": {
+            "type": "boolean"
+          },
+          "position": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/PermissionSet"
+          }
+        }
+      },
+      "UserPublicResponse": {
+        "required": [
+          "id",
+          "username",
+          "email",
+          "first_name",
+          "last_name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "last_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "UserResponse": {
+        "required": [
+          "id",
+          "username",
+          "email",
+          "first_name",
+          "last_name",
+          "created_at",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "last_name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "date-time"
+          }
+        }
+      },
+      "ValidatedBody": {
+        "required": [
+          "name",
+          "position",
+          "boolean"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "position": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "boolean": {
+            "type": "boolean"
+          }
+        }
+      }
     }
   },
   "tags": [
@@ -181,10 +443,10 @@
       "name": "Web"
     },
     {
-      "name": "UserEndpoints"
+      "name": "Users"
     },
     {
-      "name": "RoleEndpoints"
+      "name": "Roles"
     }
   ]
 }

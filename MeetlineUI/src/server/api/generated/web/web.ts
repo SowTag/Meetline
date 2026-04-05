@@ -5,18 +5,32 @@
  * Meetline is an online learning and conferencing app.
  * OpenAPI spec version: v0.0.1
  */
+import type {
+  ValidatedBody
+} from '../schemas';
+
 import { fetcher } from '../../orval-fetcher';
 
 
 
   export const getWeb = () => {
-const getDebugEndpoints = (
+const getApiDebugEndpoints = (
 
  ) => {
       return fetcher<void>(
-      {url: `/_debug/endpoints`, method: 'GET'
+      {url: `/api/_debug/endpoints`, method: 'GET'
     },
       );
     }
-  return {getDebugEndpoints}};
-export type GetDebugEndpointsResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getWeb>['getDebugEndpoints']>>>
+  const getApiDebugValidation = (
+    validatedBody: ValidatedBody,
+ ) => {
+      return fetcher<void>(
+      {url: `/api/_debug/validation`, method: 'GET',
+      headers: {'Content-Type': 'application/json', }
+    },
+      );
+    }
+  return {getApiDebugEndpoints,getApiDebugValidation}};
+export type GetApiDebugEndpointsResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getWeb>['getApiDebugEndpoints']>>>
+export type GetApiDebugValidationResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getWeb>['getApiDebugValidation']>>>

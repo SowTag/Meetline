@@ -6,6 +6,10 @@
  * OpenAPI spec version: v0.0.1
  */
 
-export * from './createRoleCommand';
-export * from './onboardUserRequest';
+export * from './createRoleRequest';
+export * from './createUserRequest';
 export * from './permissionSet';
+export * from './roleResponse';
+export * from './userPublicResponse';
+export * from './userResponse';
+export * from './validatedBody';
