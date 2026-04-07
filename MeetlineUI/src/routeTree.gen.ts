@@ -15,7 +15,6 @@ import { Route as AuthenticatedSidebarRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedSidebarIndexRouteImport } from './routes/_authenticated/_sidebar/index'
 import { Route as AuthenticatedSidebarChatsIndexRouteImport } from './routes/_authenticated/_sidebar/chats/index'
 import { Route as AuthenticatedSidebarCalendarIndexRouteImport } from './routes/_authenticated/_sidebar/calendar/index'
-import { Route as AuthenticatedSidebarAccountSettingsSplatRouteImport } from './routes/_authenticated/_sidebar/account-settings/$'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -48,24 +47,16 @@ const AuthenticatedSidebarCalendarIndexRoute =
     path: '/calendar/',
     getParentRoute: () => AuthenticatedSidebarRoute,
   } as any)
-const AuthenticatedSidebarAccountSettingsSplatRoute =
-  AuthenticatedSidebarAccountSettingsSplatRouteImport.update({
-    id: '/account-settings/$',
-    path: '/account-settings/$',
-    getParentRoute: () => AuthenticatedSidebarRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
-  '/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
   '/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
   '/chats/': typeof AuthenticatedSidebarChatsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
-  '/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
   '/calendar': typeof AuthenticatedSidebarCalendarIndexRoute
   '/chats': typeof AuthenticatedSidebarChatsIndexRoute
 }
@@ -75,27 +66,20 @@ export interface FileRoutesById {
   '/_authenticated/_sidebar': typeof AuthenticatedSidebarRouteWithChildren
   '/welcome/$': typeof WelcomeSplatRoute
   '/_authenticated/_sidebar/': typeof AuthenticatedSidebarIndexRoute
-  '/_authenticated/_sidebar/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
   '/_authenticated/_sidebar/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
   '/_authenticated/_sidebar/chats/': typeof AuthenticatedSidebarChatsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/welcome/$'
-    | '/account-settings/$'
-    | '/calendar/'
-    | '/chats/'
+  fullPaths: '/' | '/welcome/$' | '/calendar/' | '/chats/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/welcome/$' | '/account-settings/$' | '/calendar' | '/chats'
+  to: '/' | '/welcome/$' | '/calendar' | '/chats'
   id:
     | '__root__'
     | '/_authenticated'
     | '/_authenticated/_sidebar'
     | '/welcome/$'
     | '/_authenticated/_sidebar/'
-    | '/_authenticated/_sidebar/account-settings/$'
     | '/_authenticated/_sidebar/calendar/'
     | '/_authenticated/_sidebar/chats/'
   fileRoutesById: FileRoutesById
@@ -149,27 +133,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSidebarCalendarIndexRouteImport
       parentRoute: typeof AuthenticatedSidebarRoute
     }
-    '/_authenticated/_sidebar/account-settings/$': {
-      id: '/_authenticated/_sidebar/account-settings/$'
-      path: '/account-settings/$'
-      fullPath: '/account-settings/$'
-      preLoaderRoute: typeof AuthenticatedSidebarAccountSettingsSplatRouteImport
-      parentRoute: typeof AuthenticatedSidebarRoute
-    }
   }
 }
 
 interface AuthenticatedSidebarRouteChildren {
   AuthenticatedSidebarIndexRoute: typeof AuthenticatedSidebarIndexRoute
-  AuthenticatedSidebarAccountSettingsSplatRoute: typeof AuthenticatedSidebarAccountSettingsSplatRoute
   AuthenticatedSidebarCalendarIndexRoute: typeof AuthenticatedSidebarCalendarIndexRoute
   AuthenticatedSidebarChatsIndexRoute: typeof AuthenticatedSidebarChatsIndexRoute
 }
 
 const AuthenticatedSidebarRouteChildren: AuthenticatedSidebarRouteChildren = {
   AuthenticatedSidebarIndexRoute: AuthenticatedSidebarIndexRoute,
-  AuthenticatedSidebarAccountSettingsSplatRoute:
-    AuthenticatedSidebarAccountSettingsSplatRoute,
   AuthenticatedSidebarCalendarIndexRoute:
     AuthenticatedSidebarCalendarIndexRoute,
   AuthenticatedSidebarChatsIndexRoute: AuthenticatedSidebarChatsIndexRoute,

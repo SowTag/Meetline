@@ -31,7 +31,18 @@ const rootElement = document.getElementById('app')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
-    <ClerkProvider publishableKey={env.VITE_CLERK_PUBLISHABLE_KEY}>
+    <ClerkProvider
+      publishableKey={env.VITE_CLERK_PUBLISHABLE_KEY}
+      appearance={{
+        baseTheme: 'dark',
+        elements: {
+          modalBackdrop: {
+            backgroundColor: '#0001',
+            backdropFilter: 'blur(var(--radius-sm))',
+          },
+        },
+      }}
+    >
       <App />
     </ClerkProvider>,
   )

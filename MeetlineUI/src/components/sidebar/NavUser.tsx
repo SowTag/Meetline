@@ -17,6 +17,7 @@ import {
 } from '#/components/ui/dropdown-menu.tsx'
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar.tsx'
 import { useIsMobile } from '#/hooks/use-mobile.ts'
+import { useClerk } from '@clerk/react'
 
 export type SidebarUser = {
   emailAddress: string | null
@@ -43,7 +44,11 @@ function getInitials(fullName: string | null, maxLetters = 2) {
 }
 
 export function NavUser({ user, ...props }: SidebarUserProps) {
+  const { openUserProfile } = useClerk();
+
   if (!user) return null
+
+  const openUserProfileModal = () => openUserProfile();
 
   const fallback = getInitials(user.fullName)
 
@@ -86,12 +91,13 @@ export function NavUser({ user, ...props }: SidebarUserProps) {
           />
 
           <DropdownMenuContent
-            side={isMobile ? 'top' : 'right'}
+            side={isMobile ? 'bottom' : 'right'}
             align={'center'}
+            className={'min-w-56'}
           >
             <DropdownMenuGroup>
               <DropdownMenuLabel>Account</DropdownMenuLabel>
-              <DropdownMenuItem render={<Link to={'/account-settings/$'} />}>
+              <DropdownMenuItem onClick={() => openUserProfileModal()}>
                 <CircleUserIcon />
                 Account settings
               </DropdownMenuItem>
