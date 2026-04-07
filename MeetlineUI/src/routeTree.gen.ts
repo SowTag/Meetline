@@ -13,6 +13,8 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as WelcomeSplatRouteImport } from './routes/welcome/$'
 import { Route as AuthenticatedSidebarRouteImport } from './routes/_authenticated/_sidebar'
 import { Route as AuthenticatedSidebarIndexRouteImport } from './routes/_authenticated/_sidebar/index'
+import { Route as AuthenticatedSidebarChatsIndexRouteImport } from './routes/_authenticated/_sidebar/chats/index'
+import { Route as AuthenticatedSidebarCalendarIndexRouteImport } from './routes/_authenticated/_sidebar/calendar/index'
 import { Route as AuthenticatedSidebarAccountSettingsSplatRouteImport } from './routes/_authenticated/_sidebar/account-settings/$'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
@@ -34,6 +36,18 @@ const AuthenticatedSidebarIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSidebarRoute,
   } as any)
+const AuthenticatedSidebarChatsIndexRoute =
+  AuthenticatedSidebarChatsIndexRouteImport.update({
+    id: '/chats/',
+    path: '/chats/',
+    getParentRoute: () => AuthenticatedSidebarRoute,
+  } as any)
+const AuthenticatedSidebarCalendarIndexRoute =
+  AuthenticatedSidebarCalendarIndexRouteImport.update({
+    id: '/calendar/',
+    path: '/calendar/',
+    getParentRoute: () => AuthenticatedSidebarRoute,
+  } as any)
 const AuthenticatedSidebarAccountSettingsSplatRoute =
   AuthenticatedSidebarAccountSettingsSplatRouteImport.update({
     id: '/account-settings/$',
@@ -45,11 +59,15 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
   '/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
+  '/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
+  '/chats/': typeof AuthenticatedSidebarChatsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
   '/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
+  '/calendar': typeof AuthenticatedSidebarCalendarIndexRoute
+  '/chats': typeof AuthenticatedSidebarChatsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -58,12 +76,19 @@ export interface FileRoutesById {
   '/welcome/$': typeof WelcomeSplatRoute
   '/_authenticated/_sidebar/': typeof AuthenticatedSidebarIndexRoute
   '/_authenticated/_sidebar/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
+  '/_authenticated/_sidebar/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
+  '/_authenticated/_sidebar/chats/': typeof AuthenticatedSidebarChatsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/welcome/$' | '/account-settings/$'
+  fullPaths:
+    | '/'
+    | '/welcome/$'
+    | '/account-settings/$'
+    | '/calendar/'
+    | '/chats/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/welcome/$' | '/account-settings/$'
+  to: '/' | '/welcome/$' | '/account-settings/$' | '/calendar' | '/chats'
   id:
     | '__root__'
     | '/_authenticated'
@@ -71,6 +96,8 @@ export interface FileRouteTypes {
     | '/welcome/$'
     | '/_authenticated/_sidebar/'
     | '/_authenticated/_sidebar/account-settings/$'
+    | '/_authenticated/_sidebar/calendar/'
+    | '/_authenticated/_sidebar/chats/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -108,6 +135,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSidebarIndexRouteImport
       parentRoute: typeof AuthenticatedSidebarRoute
     }
+    '/_authenticated/_sidebar/chats/': {
+      id: '/_authenticated/_sidebar/chats/'
+      path: '/chats'
+      fullPath: '/chats/'
+      preLoaderRoute: typeof AuthenticatedSidebarChatsIndexRouteImport
+      parentRoute: typeof AuthenticatedSidebarRoute
+    }
+    '/_authenticated/_sidebar/calendar/': {
+      id: '/_authenticated/_sidebar/calendar/'
+      path: '/calendar'
+      fullPath: '/calendar/'
+      preLoaderRoute: typeof AuthenticatedSidebarCalendarIndexRouteImport
+      parentRoute: typeof AuthenticatedSidebarRoute
+    }
     '/_authenticated/_sidebar/account-settings/$': {
       id: '/_authenticated/_sidebar/account-settings/$'
       path: '/account-settings/$'
@@ -121,12 +162,17 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedSidebarRouteChildren {
   AuthenticatedSidebarIndexRoute: typeof AuthenticatedSidebarIndexRoute
   AuthenticatedSidebarAccountSettingsSplatRoute: typeof AuthenticatedSidebarAccountSettingsSplatRoute
+  AuthenticatedSidebarCalendarIndexRoute: typeof AuthenticatedSidebarCalendarIndexRoute
+  AuthenticatedSidebarChatsIndexRoute: typeof AuthenticatedSidebarChatsIndexRoute
 }
 
 const AuthenticatedSidebarRouteChildren: AuthenticatedSidebarRouteChildren = {
   AuthenticatedSidebarIndexRoute: AuthenticatedSidebarIndexRoute,
   AuthenticatedSidebarAccountSettingsSplatRoute:
     AuthenticatedSidebarAccountSettingsSplatRoute,
+  AuthenticatedSidebarCalendarIndexRoute:
+    AuthenticatedSidebarCalendarIndexRoute,
+  AuthenticatedSidebarChatsIndexRoute: AuthenticatedSidebarChatsIndexRoute,
 }
 
 const AuthenticatedSidebarRouteWithChildren =
