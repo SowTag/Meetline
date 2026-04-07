@@ -13,9 +13,13 @@ export const Route = createFileRoute('/_auth/_sidebar/')({
 })
 
 function Index() {
-  return <div className='flex flex-col gap-2 p-4 w-fit'>
-    <span>Debug user info</span>
-    <code className='bg-primary/5 border-primary/50 border p-2 rounded-md'>sfd</code>
-    <Button variant={'secondary'}>Reload</Button>
-  </div>
+  return (
+    <div className="flex flex-col gap-2 p-4 w-fit">
+      <span>Debug user info</span>
+      <code className="bg-primary/5 border-primary/50 border p-2 rounded-md">
+        sfd
+      </code>
+      <Button variant={'secondary'}>Reload</Button>
+    </div>
+  )
 }

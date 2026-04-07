@@ -7,11 +7,11 @@
  */
 
 export interface UserPublicResponse {
-  id: string;
-  username: string;
-  email: string;
+  id: string
+  username: string
+  email: string
   /** @nullable */
-  first_name: string | null;
+  first_name: string | null
   /** @nullable */
-  last_name: string | null;
+  last_name: string | null
 }

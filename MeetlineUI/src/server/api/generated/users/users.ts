@@ -8,54 +8,50 @@
 import type {
   CreateUserRequest,
   UserPublicResponse,
-  UserResponse
-} from '../schemas';
+  UserResponse,
+} from '../schemas'
 
-import { fetcher } from '../../orval-fetcher';
+import { fetcher } from '../../orval-fetcher'
 
-
-
-  export const getUsers = () => {
-/**
- * Returns the full profile of the user making the request. Requires a valid JWT token.
- * @summary Get the currently authenticated user
- */
-const getCurrentUser = (
-
- ) => {
-      return fetcher<UserResponse>(
-      {url: `/api/users/me`, method: 'GET'
-    },
-      );
-    }
+export const getUsers = () => {
   /**
- * Retrieves a user profile by their unique identifier.
- * @summary Get user by ID
- */
-const getUserById = (
-    id: string,
- ) => {
-      return fetcher<UserPublicResponse>(
-      {url: `/api/users/${id}`, method: 'GET'
-    },
-      );
-    }
+   * Returns the full profile of the user making the request. Requires a valid JWT token.
+   * @summary Get the currently authenticated user
+   */
+  const getCurrentUser = () => {
+    return fetcher<UserResponse>({ url: `/api/users/me`, method: 'GET' })
+  }
+  /**
+   * Retrieves a user profile by their unique identifier.
+   * @summary Get user by ID
+   */
+  const getUserById = (id: string) => {
+    return fetcher<UserPublicResponse>({
+      url: `/api/users/${id}`,
+      method: 'GET',
+    })
+  }
   /**
  * Creates a new user account linked to an external identity (e.g. from Auth0, Firebase, etc.).
 This endpoint is public and should be called after successful external authentication.
  * @summary Onboard a new user
  */
-const onboardUser = (
-    createUserRequest: CreateUserRequest,
- ) => {
-      return fetcher<UserResponse>(
-      {url: `/api/users/onboard`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: createUserRequest
-    },
-      );
-    }
-  return {getCurrentUser,getUserById,onboardUser}};
-export type GetCurrentUserResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getUsers>['getCurrentUser']>>>
-export type GetUserByIdResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getUsers>['getUserById']>>>
-export type OnboardUserResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getUsers>['onboardUser']>>>
+  const onboardUser = (createUserRequest: CreateUserRequest) => {
+    return fetcher<UserResponse>({
+      url: `/api/users/onboard`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: createUserRequest,
+    })
+  }
+  return { getCurrentUser, getUserById, onboardUser }
+}
+export type GetCurrentUserResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof getUsers>['getCurrentUser']>>
+>
+export type GetUserByIdResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof getUsers>['getUserById']>>
+>
+export type OnboardUserResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof getUsers>['onboardUser']>>
+>

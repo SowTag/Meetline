@@ -52,7 +52,7 @@ AXIOS_INSTANCE.interceptors.response.use(
     }
     return response
   },
-  async (error) => Promise.reject(error)
+  async (error) => Promise.reject(error),
 )
 
 export const fetcher = async <T>(config: AxiosRequestConfig): Promise<T> => {

@@ -5,23 +5,28 @@
  * Meetline is an online learning and conferencing app.
  * OpenAPI spec version: v0.0.1
  */
-import * as zod from 'zod';
-
+import * as zod from 'zod'
 
 /**
  * Returns a list of all available roles.
  * @summary Get a list of available roles
  */
-export const getRolesResponsePositionRegExpOne = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-export const getRolesResponsePositionRegExpTwo = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-
+export const getRolesResponsePositionRegExpOne = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
+export const getRolesResponsePositionRegExpTwo = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
 
 export const GetRolesResponseItem = zod.object({
-  "id": zod.uuid(),
-  "name": zod.string(),
-  "hoist": zod.boolean(),
-  "position": zod.union([zod.number().stringFormat('int32', getRolesResponsePositionRegExpOne),zod.stringFormat('int32', getRolesResponsePositionRegExpTwo)]),
-  "permissions": zod.unknown()
+  id: zod.uuid(),
+  name: zod.string(),
+  hoist: zod.boolean(),
+  position: zod.union([
+    zod.number().stringFormat('int32', getRolesResponsePositionRegExpOne),
+    zod.stringFormat('int32', getRolesResponsePositionRegExpTwo),
+  ]),
+  permissions: zod.unknown(),
 })
 export const GetRolesResponse = zod.array(GetRolesResponseItem)
 
@@ -29,15 +34,21 @@ export const GetRolesResponse = zod.array(GetRolesResponseItem)
  * Tries to create a role, doing permission checks in the middle.
  * @summary Create a role
  */
-export const createRoleBodyPositionRegExpOne = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-export const createRoleBodyPositionRegExpTwo = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-
+export const createRoleBodyPositionRegExpOne = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
+export const createRoleBodyPositionRegExpTwo = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
 
 export const CreateRoleBody = zod.object({
-  "name": zod.string(),
-  "hoist": zod.boolean(),
-  "position": zod.union([zod.number().stringFormat('int32', createRoleBodyPositionRegExpOne),zod.stringFormat('int32', createRoleBodyPositionRegExpTwo)]),
-  "permissions": zod.unknown()
+  name: zod.string(),
+  hoist: zod.boolean(),
+  position: zod.union([
+    zod.number().stringFormat('int32', createRoleBodyPositionRegExpOne),
+    zod.stringFormat('int32', createRoleBodyPositionRegExpTwo),
+  ]),
+  permissions: zod.unknown(),
 })
 
 /**
@@ -45,18 +56,23 @@ export const CreateRoleBody = zod.object({
  * @summary Get a role by its ID
  */
 export const GetRoleByIdParams = zod.object({
-  "id": zod.uuid()
+  id: zod.uuid(),
 })
 
-export const getRoleByIdResponsePositionRegExpOne = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-export const getRoleByIdResponsePositionRegExpTwo = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-
+export const getRoleByIdResponsePositionRegExpOne = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
+export const getRoleByIdResponsePositionRegExpTwo = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
 
 export const GetRoleByIdResponse = zod.object({
-  "id": zod.uuid(),
-  "name": zod.string(),
-  "hoist": zod.boolean(),
-  "position": zod.union([zod.number().stringFormat('int32', getRoleByIdResponsePositionRegExpOne),zod.stringFormat('int32', getRoleByIdResponsePositionRegExpTwo)]),
-  "permissions": zod.unknown()
+  id: zod.uuid(),
+  name: zod.string(),
+  hoist: zod.boolean(),
+  position: zod.union([
+    zod.number().stringFormat('int32', getRoleByIdResponsePositionRegExpOne),
+    zod.stringFormat('int32', getRoleByIdResponsePositionRegExpTwo),
+  ]),
+  permissions: zod.unknown(),
 })
-

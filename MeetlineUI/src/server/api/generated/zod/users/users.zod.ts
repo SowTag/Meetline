@@ -5,21 +5,20 @@
  * Meetline is an online learning and conferencing app.
  * OpenAPI spec version: v0.0.1
  */
-import * as zod from 'zod';
-
+import * as zod from 'zod'
 
 /**
  * Returns the full profile of the user making the request. Requires a valid JWT token.
  * @summary Get the currently authenticated user
  */
 export const GetCurrentUserResponse = zod.object({
-  "id": zod.uuid(),
-  "username": zod.string(),
-  "email": zod.string(),
-  "first_name": zod.string().nullable(),
-  "last_name": zod.string().nullable(),
-  "created_at": zod.iso.datetime({}),
-  "updated_at": zod.iso.datetime({}).nullable()
+  id: zod.uuid(),
+  username: zod.string(),
+  email: zod.string(),
+  first_name: zod.string().nullable(),
+  last_name: zod.string().nullable(),
+  created_at: zod.iso.datetime({}),
+  updated_at: zod.iso.datetime({}).nullable(),
 })
 
 /**
@@ -27,15 +26,15 @@ export const GetCurrentUserResponse = zod.object({
  * @summary Get user by ID
  */
 export const GetUserByIdParams = zod.object({
-  "id": zod.uuid()
+  id: zod.uuid(),
 })
 
 export const GetUserByIdResponse = zod.object({
-  "id": zod.uuid(),
-  "username": zod.string(),
-  "email": zod.string(),
-  "first_name": zod.string().nullable(),
-  "last_name": zod.string().nullable()
+  id: zod.uuid(),
+  username: zod.string(),
+  email: zod.string(),
+  first_name: zod.string().nullable(),
+  last_name: zod.string().nullable(),
 })
 
 /**
@@ -44,9 +43,8 @@ This endpoint is public and should be called after successful external authentic
  * @summary Onboard a new user
  */
 export const OnboardUserBody = zod.object({
-  "username": zod.string(),
-  "email": zod.string(),
-  "first_name": zod.string().nullable(),
-  "last_name": zod.string().nullable()
+  username: zod.string(),
+  email: zod.string(),
+  first_name: zod.string().nullable(),
+  last_name: zod.string().nullable(),
 })
-

@@ -7,8 +7,8 @@
  */
 
 export interface ValidatedBody {
-  name: string;
+  name: string
   /** @pattern ^-?(?:0|[1-9]\d*)$ */
-  position: number | string;
-  boolean: boolean;
+  position: number | string
+  boolean: boolean
 }

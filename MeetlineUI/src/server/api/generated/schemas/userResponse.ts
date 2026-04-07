@@ -7,14 +7,14 @@
  */
 
 export interface UserResponse {
-  id: string;
-  username: string;
-  email: string;
+  id: string
+  username: string
+  email: string
   /** @nullable */
-  first_name: string | null;
+  first_name: string | null
   /** @nullable */
-  last_name: string | null;
-  created_at: string;
+  last_name: string | null
+  created_at: string
   /** @nullable */
-  updated_at: string | null;
+  updated_at: string | null
 }

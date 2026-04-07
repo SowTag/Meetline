@@ -7,10 +7,10 @@
  */
 
 export interface CreateUserRequest {
-  username: string;
-  email: string;
+  username: string
+  email: string
   /** @nullable */
-  first_name: string | null;
+  first_name: string | null
   /** @nullable */
-  last_name: string | null;
+  last_name: string | null
 }

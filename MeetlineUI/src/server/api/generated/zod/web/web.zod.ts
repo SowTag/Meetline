@@ -5,16 +5,22 @@
  * Meetline is an online learning and conferencing app.
  * OpenAPI spec version: v0.0.1
  */
-import * as zod from 'zod';
+import * as zod from 'zod'
 
-
-export const getApiDebugValidationBodyPositionRegExpOne = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-export const getApiDebugValidationBodyPositionRegExpTwo = new RegExp('^-?(?:0|[1-9]\\d\*)$');
-
+export const getApiDebugValidationBodyPositionRegExpOne = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
+export const getApiDebugValidationBodyPositionRegExpTwo = new RegExp(
+  '^-?(?:0|[1-9]\\d\*)$',
+)
 
 export const GetApiDebugValidationBody = zod.object({
-  "name": zod.string(),
-  "position": zod.union([zod.number().stringFormat('int32', getApiDebugValidationBodyPositionRegExpOne),zod.stringFormat('int32', getApiDebugValidationBodyPositionRegExpTwo)]),
-  "boolean": zod.boolean()
+  name: zod.string(),
+  position: zod.union([
+    zod
+      .number()
+      .stringFormat('int32', getApiDebugValidationBodyPositionRegExpOne),
+    zod.stringFormat('int32', getApiDebugValidationBodyPositionRegExpTwo),
+  ]),
+  boolean: zod.boolean(),
 })
-

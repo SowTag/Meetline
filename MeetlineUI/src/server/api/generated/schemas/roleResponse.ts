@@ -5,13 +5,13 @@
  * Meetline is an online learning and conferencing app.
  * OpenAPI spec version: v0.0.1
  */
-import type { PermissionSet } from './permissionSet';
+import type { PermissionSet } from './permissionSet'
 
 export interface RoleResponse {
-  id: string;
-  name: string;
-  hoist: boolean;
+  id: string
+  name: string
+  hoist: boolean
   /** @pattern ^-?(?:0|[1-9]\d*)$ */
-  position: number | string;
-  permissions: PermissionSet;
+  position: number | string
+  permissions: PermissionSet
 }

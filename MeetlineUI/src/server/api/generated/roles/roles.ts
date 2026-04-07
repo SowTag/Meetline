@@ -5,55 +5,45 @@
  * Meetline is an online learning and conferencing app.
  * OpenAPI spec version: v0.0.1
  */
-import type {
-  CreateRoleRequest,
-  RoleResponse
-} from '../schemas';
+import type { CreateRoleRequest, RoleResponse } from '../schemas'
 
-import { fetcher } from '../../orval-fetcher';
+import { fetcher } from '../../orval-fetcher'
 
-
-
-  export const getRoles = () => {
-/**
- * Returns a list of all available roles.
- * @summary Get a list of available roles
- */
-const getRoles = (
-
- ) => {
-      return fetcher<RoleResponse[]>(
-      {url: `/api/roles`, method: 'GET'
-    },
-      );
-    }
+export const getRoles = () => {
   /**
- * Tries to create a role, doing permission checks in the middle.
- * @summary Create a role
- */
-const createRole = (
-    createRoleRequest: CreateRoleRequest,
- ) => {
-      return fetcher<RoleResponse>(
-      {url: `/api/roles`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: createRoleRequest
-    },
-      );
-    }
+   * Returns a list of all available roles.
+   * @summary Get a list of available roles
+   */
+  const getRoles = () => {
+    return fetcher<RoleResponse[]>({ url: `/api/roles`, method: 'GET' })
+  }
   /**
- * Returns a role's details given its ID.
- * @summary Get a role by its ID
- */
-const getRoleById = (
-    id: string,
- ) => {
-      return fetcher<RoleResponse>(
-      {url: `/api/roles/${id}`, method: 'GET'
-    },
-      );
-    }
-  return {getRoles,createRole,getRoleById}};
-export type GetRolesResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getRoles>['getRoles']>>>
-export type CreateRoleResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getRoles>['createRole']>>>
-export type GetRoleByIdResult = NonNullable<Awaited<ReturnType<ReturnType<typeof getRoles>['getRoleById']>>>
+   * Tries to create a role, doing permission checks in the middle.
+   * @summary Create a role
+   */
+  const createRole = (createRoleRequest: CreateRoleRequest) => {
+    return fetcher<RoleResponse>({
+      url: `/api/roles`,
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: createRoleRequest,
+    })
+  }
+  /**
+   * Returns a role's details given its ID.
+   * @summary Get a role by its ID
+   */
+  const getRoleById = (id: string) => {
+    return fetcher<RoleResponse>({ url: `/api/roles/${id}`, method: 'GET' })
+  }
+  return { getRoles, createRole, getRoleById }
+}
+export type GetRolesResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof getRoles>['getRoles']>>
+>
+export type CreateRoleResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof getRoles>['createRole']>>
+>
+export type GetRoleByIdResult = NonNullable<
+  Awaited<ReturnType<ReturnType<typeof getRoles>['getRoleById']>>
+>

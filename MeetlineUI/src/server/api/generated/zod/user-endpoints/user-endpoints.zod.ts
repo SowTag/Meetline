@@ -5,17 +5,15 @@
  * Meetline is an online learning and conferencing app.
  * OpenAPI spec version: v0.0.1
  */
-import * as zod from 'zod';
-
+import * as zod from 'zod'
 
 export const GetApiUsersIdParams = zod.object({
-  "id": zod.uuid()
+  id: zod.uuid(),
 })
 
 export const PostApiUsersOnboardBody = zod.object({
-  "username": zod.string(),
-  "email": zod.string(),
-  "first_name": zod.string().nullable(),
-  "last_name": zod.string().nullable()
+  username: zod.string(),
+  email: zod.string(),
+  first_name: zod.string().nullable(),
+  last_name: zod.string().nullable(),
 })
-

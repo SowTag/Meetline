@@ -18,9 +18,7 @@
   "paths": {
     "/api/_debug/endpoints": {
       "get": {
-        "tags": [
-          "Web"
-        ],
+        "tags": ["Web"],
         "responses": {
           "200": {
             "description": "OK"
@@ -30,9 +28,7 @@
     },
     "/api/_debug/validation": {
       "get": {
-        "tags": [
-          "Web"
-        ],
+        "tags": ["Web"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -52,9 +48,7 @@
     },
     "/api/users/me": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get the currently authenticated user",
         "description": "Returns the full profile of the user making the request. Requires a valid JWT token.",
         "operationId": "GetCurrentUser",
@@ -74,9 +68,7 @@
     },
     "/api/users/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get user by ID",
         "description": "Retrieves a user profile by their unique identifier.",
         "operationId": "GetUserById",
@@ -110,9 +102,7 @@
     },
     "/api/users/onboard": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Onboard a new user",
         "description": "Creates a new user account linked to an external identity (e.g. from Auth0, Firebase, etc.).\nThis endpoint is public and should be called after successful external authentication.",
         "operationId": "OnboardUser",
@@ -148,9 +138,7 @@
     },
     "/api/roles": {
       "get": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Get a list of available roles",
         "description": "Returns a list of all available roles.",
         "operationId": "GetRoles",
@@ -171,9 +159,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Create a role",
         "description": "Tries to create a role, doing permission checks in the middle.",
         "operationId": "CreateRole",
@@ -203,9 +189,7 @@
     },
     "/api/roles/{id}": {
       "get": {
-        "tags": [
-          "Roles"
-        ],
+        "tags": ["Roles"],
         "summary": "Get a role by its ID",
         "description": "Returns a role's details given its ID.",
         "operationId": "GetRoleById",
@@ -241,12 +225,7 @@
   "components": {
     "schemas": {
       "CreateRoleRequest": {
-        "required": [
-          "name",
-          "hoist",
-          "position",
-          "permissions"
-        ],
+        "required": ["name", "hoist", "position", "permissions"],
         "type": "object",
         "properties": {
           "name": {
@@ -257,10 +236,7 @@
           },
           "position": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
+            "type": ["integer", "string"],
             "format": "int32"
           },
           "permissions": {
@@ -269,12 +245,7 @@
         }
       },
       "CreateUserRequest": {
-        "required": [
-          "username",
-          "email",
-          "first_name",
-          "last_name"
-        ],
+        "required": ["username", "email", "first_name", "last_name"],
         "type": "object",
         "properties": {
           "username": {
@@ -284,28 +255,16 @@
             "type": "string"
           },
           "first_name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": ["null", "string"]
           },
           "last_name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": ["null", "string"]
           }
         }
       },
       "PermissionSet": {},
       "RoleResponse": {
-        "required": [
-          "id",
-          "name",
-          "hoist",
-          "position",
-          "permissions"
-        ],
+        "required": ["id", "name", "hoist", "position", "permissions"],
         "type": "object",
         "properties": {
           "id": {
@@ -320,10 +279,7 @@
           },
           "position": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
+            "type": ["integer", "string"],
             "format": "int32"
           },
           "permissions": {
@@ -332,13 +288,7 @@
         }
       },
       "UserPublicResponse": {
-        "required": [
-          "id",
-          "username",
-          "email",
-          "first_name",
-          "last_name"
-        ],
+        "required": ["id", "username", "email", "first_name", "last_name"],
         "type": "object",
         "properties": {
           "id": {
@@ -352,16 +302,10 @@
             "type": "string"
           },
           "first_name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": ["null", "string"]
           },
           "last_name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": ["null", "string"]
           }
         }
       },
@@ -388,36 +332,23 @@
             "type": "string"
           },
           "first_name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": ["null", "string"]
           },
           "last_name": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": ["null", "string"]
           },
           "created_at": {
             "type": "string",
             "format": "date-time"
           },
           "updated_at": {
-            "type": [
-              "null",
-              "string"
-            ],
+            "type": ["null", "string"],
             "format": "date-time"
           }
         }
       },
       "ValidatedBody": {
-        "required": [
-          "name",
-          "position",
-          "boolean"
-        ],
+        "required": ["name", "position", "boolean"],
         "type": "object",
         "properties": {
           "name": {
@@ -425,10 +356,7 @@
           },
           "position": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
-            "type": [
-              "integer",
-              "string"
-            ],
+            "type": ["integer", "string"],
             "format": "int32"
           },
           "boolean": {

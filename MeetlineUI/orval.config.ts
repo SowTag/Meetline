@@ -12,7 +12,7 @@ if (!fs.existsSync(SCHEMA_PATH)) {
 }
 
 export default defineConfig({
-  'meetline_axios': {
+  meetline_axios: {
     input: {
       target: SCHEMA_PATH,
     },
@@ -31,7 +31,7 @@ export default defineConfig({
     },
   },
 
-  'meetline_zod': {
+  meetline_zod: {
     input: {
       target: SCHEMA_PATH,
     },
