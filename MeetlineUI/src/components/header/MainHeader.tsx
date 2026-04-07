@@ -45,7 +45,7 @@ export function MainHeader() {
       </div>
 
       <div className="flex justify-center">
-        <UniversalSearchTrigger />
+        <UniversalSearchTrigger className={'md:flex hidden'} />
       </div>
 
       <div className="flex justify-end">

@@ -14,9 +14,14 @@ import {
 import { Avatar, AvatarImage } from '#/components/ui/avatar.tsx'
 import { create } from 'zustand'
 
-export const useUniversalSearch = create((set) => ({
+type UniversalSearchState = {
+  isOpen: boolean;
+  setIsOpen: (open: boolean | ((prev: boolean) => boolean)) => void
+}
+
+export const useUniversalSearch = create<UniversalSearchState>((set) => ({
   isOpen: false,
-  setIsOpen: (open: boolean) => set(() => ({ isOpen: open })),
+  setIsOpen: (open) => set((state) => ({ isOpen: typeof open === 'function' ? open(state.isOpen) : open })),
 }))
 
 export function UniversalSearch() {

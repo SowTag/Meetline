@@ -5,15 +5,15 @@ import { useUniversalSearch } from './UniversalSearch'
 import { cn } from '#/lib/utils.ts'
 
 export function UniversalSearchTrigger({ className, ...props }: ComponentProps<typeof Button>) {
-  const { isOpen, setIsOpen } = useUniversalSearch()
+  const { setIsOpen } = useUniversalSearch()
 
   return (
     <>
       <Button
         variant="outline"
         className={cn(
-          className,
           'h-8 w-full max-w-xs justify-start text-muted-foreground',
+          className,
         )}
         onClick={() => setIsOpen(true)}
         {...props}
