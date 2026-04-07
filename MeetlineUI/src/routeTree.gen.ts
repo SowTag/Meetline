@@ -10,44 +10,67 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
-import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as WelcomeSplatRouteImport } from './routes/welcome/$'
+import { Route as AuthenticatedSidebarRouteImport } from './routes/_authenticated/_sidebar'
+import { Route as AuthenticatedSidebarIndexRouteImport } from './routes/_authenticated/_sidebar/index'
+import { Route as AuthenticatedSidebarAccountSettingsSplatRouteImport } from './routes/_authenticated/_sidebar/account-settings/$'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const WelcomeSplatRoute = WelcomeSplatRouteImport.update({
   id: '/welcome/$',
   path: '/welcome/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSidebarRoute = AuthenticatedSidebarRouteImport.update({
+  id: '/_sidebar',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedSidebarIndexRoute =
+  AuthenticatedSidebarIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSidebarRoute,
+  } as any)
+const AuthenticatedSidebarAccountSettingsSplatRoute =
+  AuthenticatedSidebarAccountSettingsSplatRouteImport.update({
+    id: '/account-settings/$',
+    path: '/account-settings/$',
+    getParentRoute: () => AuthenticatedSidebarRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AuthenticatedIndexRoute
+  '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
+  '/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
-  '/': typeof AuthenticatedIndexRoute
+  '/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_authenticated/_sidebar': typeof AuthenticatedSidebarRouteWithChildren
   '/welcome/$': typeof WelcomeSplatRoute
-  '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/_sidebar/': typeof AuthenticatedSidebarIndexRoute
+  '/_authenticated/_sidebar/account-settings/$': typeof AuthenticatedSidebarAccountSettingsSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/welcome/$'
+  fullPaths: '/' | '/welcome/$' | '/account-settings/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/welcome/$' | '/'
-  id: '__root__' | '/_authenticated' | '/welcome/$' | '/_authenticated/'
+  to: '/' | '/welcome/$' | '/account-settings/$'
+  id:
+    | '__root__'
+    | '/_authenticated'
+    | '/_authenticated/_sidebar'
+    | '/welcome/$'
+    | '/_authenticated/_sidebar/'
+    | '/_authenticated/_sidebar/account-settings/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -64,13 +87,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/': {
-      id: '/_authenticated/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedIndexRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/welcome/$': {
       id: '/welcome/$'
       path: '/welcome/$'
@@ -78,15 +94,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WelcomeSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/_sidebar': {
+      id: '/_authenticated/_sidebar'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedSidebarRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_sidebar/': {
+      id: '/_authenticated/_sidebar/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedSidebarIndexRouteImport
+      parentRoute: typeof AuthenticatedSidebarRoute
+    }
+    '/_authenticated/_sidebar/account-settings/$': {
+      id: '/_authenticated/_sidebar/account-settings/$'
+      path: '/account-settings/$'
+      fullPath: '/account-settings/$'
+      preLoaderRoute: typeof AuthenticatedSidebarAccountSettingsSplatRouteImport
+      parentRoute: typeof AuthenticatedSidebarRoute
+    }
   }
 }
 
+interface AuthenticatedSidebarRouteChildren {
+  AuthenticatedSidebarIndexRoute: typeof AuthenticatedSidebarIndexRoute
+  AuthenticatedSidebarAccountSettingsSplatRoute: typeof AuthenticatedSidebarAccountSettingsSplatRoute
+}
+
+const AuthenticatedSidebarRouteChildren: AuthenticatedSidebarRouteChildren = {
+  AuthenticatedSidebarIndexRoute: AuthenticatedSidebarIndexRoute,
+  AuthenticatedSidebarAccountSettingsSplatRoute:
+    AuthenticatedSidebarAccountSettingsSplatRoute,
+}
+
+const AuthenticatedSidebarRouteWithChildren =
+  AuthenticatedSidebarRoute._addFileChildren(AuthenticatedSidebarRouteChildren)
+
 interface AuthenticatedRouteChildren {
-  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedSidebarRoute: typeof AuthenticatedSidebarRouteWithChildren
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedSidebarRoute: AuthenticatedSidebarRouteWithChildren,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
