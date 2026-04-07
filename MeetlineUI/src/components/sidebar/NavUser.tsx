@@ -1,5 +1,6 @@
 import { ChevronsUpDown, CircleUserIcon, LogOutIcon } from 'lucide-react'
 import { Link } from '@tanstack/react-router'
+import { useClerk } from '@clerk/react'
 import type { ComponentProps } from 'react'
 import {
   SidebarMenu,
@@ -17,7 +18,6 @@ import {
 } from '#/components/ui/dropdown-menu.tsx'
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar.tsx'
 import { useIsMobile } from '#/hooks/use-mobile.ts'
-import { useClerk } from '@clerk/react'
 
 export type SidebarUser = {
   emailAddress: string | null
@@ -44,11 +44,11 @@ function getInitials(fullName: string | null, maxLetters = 2) {
 }
 
 export function NavUser({ user, ...props }: SidebarUserProps) {
-  const { openUserProfile } = useClerk();
+  const { openUserProfile } = useClerk()
 
   if (!user) return null
 
-  const openUserProfileModal = () => openUserProfile();
+  const openUserProfileModal = () => openUserProfile()
 
   const fallback = getInitials(user.fullName)
 
