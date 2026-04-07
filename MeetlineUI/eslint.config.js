@@ -15,6 +15,11 @@ export default [
     },
   },
   {
-    ignores: ['eslint.config.js', 'prettier.config.js', 'src/components/ui'],
+    ignores: [
+      'eslint.config.js',
+      'prettier.config.js',
+      'src/components/ui',
+      'src/server/api/generated',
+    ],
   },
 ]
