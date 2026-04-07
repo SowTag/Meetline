@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
-import { ClerkProvider, useAuth } from '@clerk/react'
+import { ClerkProvider, useAuth, useUser } from '@clerk/react'
 import { env } from '#/env.ts'
 import { Spinner } from '#/components/ui/spinner.tsx'
 import {
@@ -39,10 +39,12 @@ if (!rootElement.innerHTML) {
 
 function App() {
   const auth = useAuth()
+  const user = useUser();
 
   if (!auth.isLoaded) return <AuthLoadingSpinner />
 
-  return <RouterProvider router={router} context={{ auth }} />
+
+  return <RouterProvider router={router} context={{ auth, user }} />
 }
 
 function AuthLoadingSpinner() {
