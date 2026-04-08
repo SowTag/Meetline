@@ -1,6 +1,5 @@
-import React from 'react'
 import { useUniversalSearch } from './UniversalSearch'
-import type {ComponentProps} from 'react';
+import type { ComponentProps } from 'react'
 import { Button } from '#/components/ui/button'
 import { Kbd } from '#/components/ui/kbd.tsx'
 import { cn } from '#/lib/utils.ts'

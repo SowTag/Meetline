@@ -2,19 +2,18 @@ import { CalendarDaysIcon, MessageCircleIcon } from 'lucide-react'
 import { Link } from '@tanstack/react-router'
 import type { ComponentProps } from 'react'
 import type { SidebarUser } from '#/components/sidebar/NavUser.tsx'
+import { NavUser } from '#/components/sidebar/NavUser.tsx'
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from '#/components/ui/sidebar.tsx'
-import { NavUser } from '#/components/sidebar/NavUser.tsx'
 import MeetpointIcon from '#/components/icons/MeetpointIcon.tsx'
 import TeamsIcon from '#/components/icons/TeamsIcon.tsx'
 import OutlookIcon from '#/components/icons/OutlookIcon.tsx'

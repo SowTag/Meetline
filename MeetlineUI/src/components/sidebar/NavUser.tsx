@@ -1,5 +1,4 @@
 import { ChevronsUpDown, CircleUserIcon, LogOutIcon } from 'lucide-react'
-import { Link } from '@tanstack/react-router'
 import { useClerk } from '@clerk/react'
 import type { ComponentProps } from 'react'
 import {

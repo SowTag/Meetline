@@ -68,13 +68,19 @@ export function GlobalErrorComponent({
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem title="Component stack" disabled={!info?.componentStack}>
+              <AccordionItem
+                title="Component stack"
+                disabled={!info?.componentStack}
+              >
                 <AccordionTrigger>
                   Component stack{!info?.componentStack && ' unavailable'}
                 </AccordionTrigger>
                 <AccordionContent>
                   <ErrorCode
-                    message={(info?.componentStack ?? 'No component stack available') as any}
+                    message={
+                      (info?.componentStack ??
+                        'No component stack available') as any
+                    }
                   />
                 </AccordionContent>
               </AccordionItem>

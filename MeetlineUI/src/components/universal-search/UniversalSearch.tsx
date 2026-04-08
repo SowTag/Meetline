@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { MailIcon, PhoneOutgoingIcon } from 'lucide-react'
 import { create } from 'zustand'
 import { Button } from '#/components/ui/button'

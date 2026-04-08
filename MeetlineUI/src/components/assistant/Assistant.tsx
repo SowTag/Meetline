@@ -1,6 +1,4 @@
-import { SparklesIcon } from 'lucide-react'
 import { create } from 'zustand'
-import { Button } from '../ui/button'
 import {
   Sheet,
   SheetContent,
@@ -8,7 +6,6 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from '../ui/sheet'
 import { Checkbox } from '../ui/checkbox'
 import {
