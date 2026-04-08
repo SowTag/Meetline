@@ -22,6 +22,9 @@ const config = defineConfig({
   ],
   build: {
     chunkSizeWarningLimit: 800 // kB
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   }
 })
 
