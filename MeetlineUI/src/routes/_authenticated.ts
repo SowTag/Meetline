@@ -1,4 +1,6 @@
 import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
+import { client } from '#/client/client.gen.ts'
+import { env } from '#/env.ts'
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: async ({ context }) => {
@@ -7,6 +9,15 @@ export const Route = createFileRoute('/_authenticated')({
         to: '/welcome/$',
       })
     }
+
+    const token = await context.auth.getToken()
+
+    client.setConfig({
+      baseUrl: env.VITE_API_BASE_URL,
+      auth() {
+        return token || ''
+      },
+    })
   },
   component: Outlet,
 })

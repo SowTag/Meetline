@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { ClerkProvider, useAuth, useUser } from '@clerk/react'
 import { Toaster } from 'sonner'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { routeTree } from './routeTree.gen'
 import type { RouterContext } from '#/routes/__root.tsx'
 import { env } from '#/env.ts'
@@ -13,6 +14,8 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '#/components/ui/empty.tsx'
+
+const queryClient = new QueryClient()
 
 const router = createRouter({
   routeTree,
@@ -44,8 +47,10 @@ if (!rootElement.innerHTML) {
         },
       }}
     >
-      <App />
-      <Toaster theme="dark" position="top-center" />
+      <QueryClientProvider client={queryClient}>
+        <App />
+        <Toaster theme="dark" position="top-center" />
+      </QueryClientProvider>
     </ClerkProvider>,
   )
 }

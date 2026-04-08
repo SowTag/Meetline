@@ -14,9 +14,9 @@ const config = defineConfig({
   server: { allowedHosts: ['meetline.maddock.world'] },
   plugins: [
     devtools(),
-// @ts-ignore
+    // @ts-ignore dumb ts errors
     heyApiPlugin({
-// @ts-ignore
+      // @ts-ignore same as before
       config: heyApiConfig,
     }),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
@@ -29,11 +29,11 @@ const config = defineConfig({
     }),
   ],
   build: {
-    chunkSizeWarningLimit: 800 // kB
+    chunkSizeWarningLimit: 800, // kB
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
-  }
+  },
 })
 
 export default config
