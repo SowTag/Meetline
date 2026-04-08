@@ -1,5 +1,5 @@
 import { RefreshCwIcon, RotateCwIcon } from 'lucide-react'
-import { Toaster, toast } from 'sonner'
+import { toast } from 'sonner'
 import { useState } from 'react'
 import {
   Card,
@@ -64,6 +64,17 @@ export function GlobalErrorComponent({
                 <AccordionContent>
                   <ErrorCode
                     message={(error.cause ?? 'No cause available') as any}
+                  />
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem title="Component stack" disabled={!info?.componentStack}>
+                <AccordionTrigger>
+                  Component stack{!info?.componentStack && ' unavailable'}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ErrorCode
+                    message={(info?.componentStack ?? 'No component stack available') as any}
                   />
                 </AccordionContent>
               </AccordionItem>
