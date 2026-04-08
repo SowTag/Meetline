@@ -20,6 +20,9 @@ const config = defineConfig({
       },
     }),
   ],
+  build: {
+    chunkSizeWarningLimit: 800 // kB
+  }
 })
 
 export default config
