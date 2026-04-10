@@ -13,6 +13,7 @@
     "lint": "eslint",
     "format": "prettier --check .",
     "check": "prettier --write . && eslint --fix && tsc",
+    "openapi-ts": "openapi-ts",
     "typecheck": "tsc"
   },
   "dependencies": {

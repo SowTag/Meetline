@@ -7,18 +7,10 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-import { heyApiPlugin } from '@hey-api/vite-plugin'
-import heyApiConfig from './openapi-ts.config.ts'
-
 const config = defineConfig({
   server: { allowedHosts: ['meetline.maddock.world'] },
   plugins: [
     devtools(),
-    // @ts-ignore dumb ts errors
-    heyApiPlugin({
-      // @ts-ignore same as before
-      config: heyApiConfig,
-    }),
     tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
     tanstackRouter({ target: 'react', autoCodeSplitting: true }),
