@@ -11,7 +11,7 @@ namespace Application.Features.User.GetUserIdByExternalId;
 /// </summary>
 /// <param name="ExternalId">The user's external ID</param>
 public record GetUserIdByExternalIdQuery(string ExternalId)
-    : IQuery<Result<UserGuidResponse>>, ICachableRequest
+    : IQuery<Result<UserGuidResponse>>, ICacheableRequest
 {
     public string CacheKey => UserCacheKeys.ByExternalId(ExternalId);
     public TimeSpan? AbsoluteExpiration => null;

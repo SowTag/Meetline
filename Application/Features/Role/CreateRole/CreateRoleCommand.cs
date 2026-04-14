@@ -8,7 +8,7 @@ using Mediator;
 namespace Application.Features.Role.CreateRole;
 
 public record CreateRoleCommand(CreateRoleRequest Request)
-    : ICommand<Result<RoleResponse>>, IInvalidateCacheRequest
+    : ICommand<Result<RoleResponse>>, ICacheInvalidatingRequest
 {
     public string[] CacheKeysToInvalidate =>
     [

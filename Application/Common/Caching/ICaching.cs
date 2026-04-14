@@ -1,6 +1,6 @@
 namespace Application.Common.Caching;
 
-public interface ICachableRequest
+public interface ICacheableRequest
 {
     string CacheKey { get; }
 
@@ -15,7 +15,7 @@ public interface ICachableRequest
     TimeSpan? SlidingExpiration { get; }
 }
 
-public interface IInvalidateCacheRequest
+public interface ICacheInvalidatingRequest
 {
     string[] CacheKeysToInvalidate { get; }
 }

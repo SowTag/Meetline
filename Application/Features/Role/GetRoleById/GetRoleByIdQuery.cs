@@ -6,7 +6,7 @@ using Mediator;
 
 namespace Application.Features.Role.GetRoleById;
 
-public record GetRoleByIdQuery(Guid Id) : IQuery<Result<RoleResponse>>, ICachableRequest
+public record GetRoleByIdQuery(Guid Id) : IQuery<Result<RoleResponse>>, ICacheableRequest
 {
     public string CacheKey => RoleCacheKeys.ById(Id);
     public TimeSpan? AbsoluteExpiration => TimeSpan.FromMinutes(10);
