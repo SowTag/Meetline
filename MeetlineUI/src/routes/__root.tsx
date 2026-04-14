@@ -6,6 +6,7 @@ import type { useAuth, useUser } from '@clerk/react'
 import '../styles.css'
 import type { QueryClient } from '@tanstack/react-query'
 import { GlobalErrorComponent } from '#/components/GlobalErrorComponent'
+import { StrictMode } from 'react'
 
 export type RouterContext = {
   auth: ReturnType<typeof useAuth>
@@ -21,7 +22,9 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 function RootComponent() {
   return (
     <>
-      <Outlet />
+      <StrictMode>
+        <Outlet />
+      </StrictMode>
       <TanStackDevtools
         config={{
           position: 'bottom-right',
