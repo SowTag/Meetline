@@ -50,4 +50,12 @@ public interface IUserRepository
     /// <param name="user">The user to create</param>
     /// <param name="ct">The cancellation token</param>
     Task CreateAsync(User user, CancellationToken ct);
+
+    /// <summary>
+    ///     Upserts a user. Will atomically insert, or update if a record with that external ID exists
+    /// </summary>
+    /// <param name="user">The user to upsert</param>
+    /// <param name="ct">The cancellation token</param>
+    /// <returns>The upserted user</returns>
+    Task UpsertByExternalIdAsync(User user, CancellationToken ct);
 }
