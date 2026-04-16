@@ -58,6 +58,9 @@ public static class ClerkWebhooks
                 break;
 
             // TODO case "user.deleted": > trigger soft-deletion
+            default:
+                return Results.Problem(statusCode: StatusCodes.Status418ImATeapot,
+                    title: "Unsupported webhook event type");
         }
 
         return Results.Ok();
