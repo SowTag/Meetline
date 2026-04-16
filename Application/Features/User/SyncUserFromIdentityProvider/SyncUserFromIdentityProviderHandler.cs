@@ -29,14 +29,13 @@ public class SyncUserFromIdentityProviderHandler(
 
         try
         {
-            await repository.UpsertByExternalIdAsync(user, cancellationToken);
+            var upsertedUser = await repository.UpsertByExternalIdAsync(user, cancellationToken);
+            return Result.Ok(_responseMapper.ToResponse(upsertedUser));
         }
         catch (Exception e)
         {
             logger.LogError(e, "Couldn't upsert user sync data");
             return Result.Fail(new IdentityProviderSyncError());
         }
-
-        return Result.Ok(_responseMapper.ToResponse(user));
     }
 }
