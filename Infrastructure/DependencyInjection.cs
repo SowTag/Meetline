@@ -1,8 +1,11 @@
 using Application.Common.Caching;
 using Application.Repositories;
+using Application.Services;
+using Clerk.BackendAPI;
 using Infrastructure.Common.Caching;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
+using Infrastructure.Services.IdentityProviderClientService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +23,10 @@ public static class DependencyInjection
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
+
+        services.AddSingleton(new ClerkBackendApi(configuration["Clerk:SecretKey"]));
+
+        services.AddScoped<IIdentityProviderClientService, ClerkIdentityProviderClientService>();
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRoleRepository, RoleRepository>();
