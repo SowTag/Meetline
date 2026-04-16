@@ -1,3 +1,4 @@
+using Application.Errors.ErrorTypes;
 using Application.Features.User.DTOs.UserGuidResponse;
 using Application.Features.User.GetUserIdByExternalId;
 using Application.Features.User.SyncUserFromIdentityProvider;
@@ -25,6 +26,9 @@ public class ResolveUserIdFromExternalIdCommandHandler(
             await mediator.Send(new GetUserIdByExternalIdQuery(command.ExternalId), cancellationToken);
 
         if (internalIdResult.IsSuccess) return Result.Ok(new UserGuidResponse(internalIdResult.Value.Id));
+
+        // Bail out if failed for any reason other than the user not existing
+        if (!internalIdResult.HasError<NotFoundError>()) return Result.Fail(internalIdResult.Errors);
 
         // IdP sync
         var syncResult =
