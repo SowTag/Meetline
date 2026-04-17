@@ -8,22 +8,6 @@ public sealed class MemoryCacheService(IMemoryCache cache) : ICacheService
 {
     private static readonly ConcurrentDictionary<string, SemaphoreSlim> Locks = new();
 
-    public T? Get<T>(string key)
-    {
-        return cache.Get<T>(key);
-    }
-
-    public void Set<T>(string key, T value, TimeSpan? absoluteExpiration = null, TimeSpan? slidingExpiration = null)
-    {
-        var options = new MemoryCacheEntryOptions
-        {
-            AbsoluteExpirationRelativeToNow = absoluteExpiration,
-            SlidingExpiration = slidingExpiration
-        };
-
-        cache.Set(key, value, options);
-    }
-
     public void Remove(string key)
     {
         cache.Remove(key);
@@ -43,12 +27,28 @@ public sealed class MemoryCacheService(IMemoryCache cache) : ICacheService
 
             result = await factory(ct);
 
-            Set(key, result, absoluteExpiration, slidingExpiration);
+            SetKey(key, result, absoluteExpiration, slidingExpiration);
             return result;
         }
         finally
         {
             semaphore.Release();
         }
+    }
+
+    public T? GetKey<T>(string key)
+    {
+        return cache.Get<T>(key);
+    }
+
+    public void SetKey<T>(string key, T value, TimeSpan? absoluteExpiration = null, TimeSpan? slidingExpiration = null)
+    {
+        var options = new MemoryCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = absoluteExpiration,
+            SlidingExpiration = slidingExpiration
+        };
+
+        cache.Set(key, value, options);
     }
 }

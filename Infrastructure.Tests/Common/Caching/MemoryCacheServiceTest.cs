@@ -25,7 +25,7 @@ public class MemoryCacheServiceTest
         const string key = "test-key";
         const string value = "cached-value";
 
-        _service.Set(key, value);
+        _service.SetKey(key, value);
 
         var result = await _service.GetOrCreateAsync(key, _ => Task.FromResult("new-value"),
             ct: TestContext.Current.CancellationToken);
@@ -43,7 +43,7 @@ public class MemoryCacheServiceTest
             ct: TestContext.Current.CancellationToken);
 
         Assert.Equal(expectedValue, result);
-        Assert.Equal(expectedValue, _service.Get<string>(key));
+        Assert.Equal(expectedValue, _service.GetKey<string>(key));
     }
 
     [Fact(DisplayName = "Should ensure atomic execution so the factory is only called once during concurrent access")]

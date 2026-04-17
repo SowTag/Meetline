@@ -2,22 +2,15 @@ using Application.Errors.ErrorTypes;
 using Application.Features.User.DTOs.UserGuidResponse;
 using Application.Features.User.GetUserIdByExternalId;
 using Application.Features.User.SyncUserFromIdentityProvider;
-using Application.Repositories;
-using Application.Services;
 using FluentResults;
 using Mediator;
-using UserSyncDataMapper = Application.Features.User.DTOs.UserSyncData.UserSyncDataMapper;
 
 namespace Application.Features.User.ResolveUserIdFromExternalId;
 
 public class ResolveUserIdFromExternalIdCommandHandler(
-    IMediator mediator,
-    IUserRepository repository,
-    IIdentityProviderClientService idpClientService)
+    IMediator mediator)
     : ICommandHandler<ResolveUserIdFromExternalIdCommand, Result<UserGuidResponse>>
 {
-    private readonly UserSyncDataMapper _idpUserSyncDataMapper = new();
-
     public async ValueTask<Result<UserGuidResponse>> Handle(
         ResolveUserIdFromExternalIdCommand command, CancellationToken cancellationToken)
     {

@@ -24,8 +24,8 @@ public class ClerkIdentityProviderClientService(ClerkBackendApi clerk) : IIdenti
                     new Error($"Clerk returned no user payload for '{externalId}'."));
 
             var email =
-                user.EmailAddresses?.FirstOrDefault(e => e.Id == user.PrimaryEmailAddressId)?.EmailAddressValue
-                ?? user.EmailAddresses?.FirstOrDefault()?.EmailAddressValue;
+                user.EmailAddresses.FirstOrDefault(e => e.Id == user.PrimaryEmailAddressId)?.EmailAddressValue
+                ?? user.EmailAddresses.FirstOrDefault()?.EmailAddressValue;
 
             if (string.IsNullOrWhiteSpace(email))
                 return Result.Fail<UserSyncData>(
