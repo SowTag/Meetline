@@ -9,7 +9,7 @@ namespace Application.Features.User.Exists;
 ///     Checks if a user exists given their ID
 /// </summary>
 /// <param name="Id">The user's ID</param>
-public record ExistsQuery(Guid Id) : IQuery<Result<ExistsResponse>>, ICachableRequest
+public record ExistsQuery(Guid Id) : IQuery<Result<ExistsResponse>>, ICacheableRequest
 {
     public string CacheKey => UserCacheKeys.Exists(Id);
     public TimeSpan? AbsoluteExpiration => TimeSpan.FromMinutes(30);

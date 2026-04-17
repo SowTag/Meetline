@@ -18,7 +18,8 @@ using Web.Scopes;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMediator(options => { options.ServiceLifetime = ServiceLifetime.Scoped; });
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
+// TODO re-enable caching
+// builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 builder.Services.AddValidatorsFromAssembly(typeof(ICacheService).Assembly);

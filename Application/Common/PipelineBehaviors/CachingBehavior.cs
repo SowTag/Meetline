@@ -16,7 +16,7 @@ public sealed class CachingBehavior<TMessage, TResponse>(
     {
         #region Caching
 
-        if (message is ICachableRequest cachable)
+        if (message is ICacheableRequest cachable)
             try
             {
                 return await cache.GetOrCreateAsync(
@@ -37,7 +37,7 @@ public sealed class CachingBehavior<TMessage, TResponse>(
         var result = await next(message, cancellationToken);
 
         // Bail out if the message is not an invalidation request or the main result is a failure (which we don't want to cache)
-        if (message is not IInvalidateCacheRequest invalidator || result is not ResultBase { IsSuccess: true })
+        if (message is not ICacheInvalidatingRequest invalidator || result is not ResultBase { IsSuccess: true })
             return result;
 
         #region Invalidation

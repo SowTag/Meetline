@@ -10,7 +10,7 @@ namespace Application.Features.User.GetUserById;
 ///     Gets a user by their ID, used for public queries (does not include private info)
 /// </summary>
 /// <param name="Id">The user's ID</param>
-public record GetUserByIdQuery(Guid Id) : IQuery<Result<UserPublicResponse>>, ICachableRequest
+public record GetUserByIdQuery(Guid Id) : IQuery<Result<UserPublicResponse>>, ICacheableRequest
 {
     public string CacheKey => UserCacheKeys.ById(Id);
     public TimeSpan? AbsoluteExpiration => TimeSpan.FromMinutes(60);
