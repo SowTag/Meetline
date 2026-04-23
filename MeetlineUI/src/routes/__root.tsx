@@ -1,12 +1,12 @@
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { StrictMode } from 'react'
 import type { useAuth, useUser } from '@clerk/react'
 
 import '../styles.css'
 import type { QueryClient } from '@tanstack/react-query'
 import { GlobalErrorComponent } from '#/components/GlobalErrorComponent'
-import { StrictMode } from 'react'
 
 export type RouterContext = {
   auth: ReturnType<typeof useAuth>
