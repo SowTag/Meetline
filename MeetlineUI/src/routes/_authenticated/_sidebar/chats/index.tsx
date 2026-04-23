@@ -1,26 +1,29 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
-import { getCurrentUserOptions } from '#/client/@tanstack/react-query.gen.ts'
 import { Button } from '#/components/ui/button'
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '#/components/ui/empty'
+import { useUniversalSearch } from '#/components/universal-search/UniversalSearch'
+import { createFileRoute } from '@tanstack/react-router'
+import { MessageCircleQuestionMarkIcon, UserRoundSearchIcon } from 'lucide-react'
 
 export const Route = createFileRoute('/_authenticated/_sidebar/chats/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const { data, refetch, isRefetching } = useQuery({
-    ...getCurrentUserOptions(),
-  })
+  const { setIsOpen: setIsUniversalSearchOpen } = useUniversalSearch();
 
-  return (
-    <div className="flex flex-col">
-      <span>Current user info</span>
-      <code className="max-w-md w-full border border-primary p-2 m-2 bg-primary/30 overflow-hidden wrap-break-word">
-        {JSON.stringify(data) ?? 'no data'}
-      </code>
-      <Button disabled={isRefetching} onClick={() => refetch()}>
-        Refresh{isRefetching ? 'ing...' : ''}
-      </Button>
-    </div>
-  )
+  const openUniversalSearch = () => setIsUniversalSearchOpen(true);
+
+return <Empty className='h-full flex items-center justify-center'>
+    <EmptyHeader>
+      <EmptyMedia variant={'icon'}>
+        <MessageCircleQuestionMarkIcon />
+      </EmptyMedia>
+      <EmptyTitle>Select a chat</EmptyTitle>
+      <EmptyDescription>Use the chat list or Universal Search</EmptyDescription>
+    </EmptyHeader>
+
+    <EmptyContent>
+      <Button variant={'secondary'} onClick={() => openUniversalSearch()}><UserRoundSearchIcon />Open Universal Search</Button>
+    </EmptyContent>
+  </Empty>
 }

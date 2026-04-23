@@ -13,8 +13,10 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as WelcomeSplatRouteImport } from './routes/welcome/$'
 import { Route as AuthenticatedSidebarRouteImport } from './routes/_authenticated/_sidebar'
 import { Route as AuthenticatedSidebarIndexRouteImport } from './routes/_authenticated/_sidebar/index'
+import { Route as AuthenticatedSidebarChatsRouteRouteImport } from './routes/_authenticated/_sidebar/chats/route'
 import { Route as AuthenticatedSidebarChatsIndexRouteImport } from './routes/_authenticated/_sidebar/chats/index'
 import { Route as AuthenticatedSidebarCalendarIndexRouteImport } from './routes/_authenticated/_sidebar/calendar/index'
+import { Route as AuthenticatedSidebarChatsIdRouteImport } from './routes/_authenticated/_sidebar/chats/$id'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -35,11 +37,17 @@ const AuthenticatedSidebarIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSidebarRoute,
   } as any)
+const AuthenticatedSidebarChatsRouteRoute =
+  AuthenticatedSidebarChatsRouteRouteImport.update({
+    id: '/chats',
+    path: '/chats',
+    getParentRoute: () => AuthenticatedSidebarRoute,
+  } as any)
 const AuthenticatedSidebarChatsIndexRoute =
   AuthenticatedSidebarChatsIndexRouteImport.update({
-    id: '/chats/',
-    path: '/chats/',
-    getParentRoute: () => AuthenticatedSidebarRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSidebarChatsRouteRoute,
   } as any)
 const AuthenticatedSidebarCalendarIndexRoute =
   AuthenticatedSidebarCalendarIndexRouteImport.update({
@@ -47,16 +55,25 @@ const AuthenticatedSidebarCalendarIndexRoute =
     path: '/calendar/',
     getParentRoute: () => AuthenticatedSidebarRoute,
   } as any)
+const AuthenticatedSidebarChatsIdRoute =
+  AuthenticatedSidebarChatsIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AuthenticatedSidebarChatsRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
+  '/chats': typeof AuthenticatedSidebarChatsRouteRouteWithChildren
+  '/chats/$id': typeof AuthenticatedSidebarChatsIdRoute
   '/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
   '/chats/': typeof AuthenticatedSidebarChatsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
+  '/chats/$id': typeof AuthenticatedSidebarChatsIdRoute
   '/calendar': typeof AuthenticatedSidebarCalendarIndexRoute
   '/chats': typeof AuthenticatedSidebarChatsIndexRoute
 }
@@ -65,21 +82,31 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_authenticated/_sidebar': typeof AuthenticatedSidebarRouteWithChildren
   '/welcome/$': typeof WelcomeSplatRoute
+  '/_authenticated/_sidebar/chats': typeof AuthenticatedSidebarChatsRouteRouteWithChildren
   '/_authenticated/_sidebar/': typeof AuthenticatedSidebarIndexRoute
+  '/_authenticated/_sidebar/chats/$id': typeof AuthenticatedSidebarChatsIdRoute
   '/_authenticated/_sidebar/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
   '/_authenticated/_sidebar/chats/': typeof AuthenticatedSidebarChatsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/welcome/$' | '/calendar/' | '/chats/'
+  fullPaths:
+    | '/'
+    | '/welcome/$'
+    | '/chats'
+    | '/chats/$id'
+    | '/calendar/'
+    | '/chats/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/welcome/$' | '/calendar' | '/chats'
+  to: '/' | '/welcome/$' | '/chats/$id' | '/calendar' | '/chats'
   id:
     | '__root__'
     | '/_authenticated'
     | '/_authenticated/_sidebar'
     | '/welcome/$'
+    | '/_authenticated/_sidebar/chats'
     | '/_authenticated/_sidebar/'
+    | '/_authenticated/_sidebar/chats/$id'
     | '/_authenticated/_sidebar/calendar/'
     | '/_authenticated/_sidebar/chats/'
   fileRoutesById: FileRoutesById
@@ -119,12 +146,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSidebarIndexRouteImport
       parentRoute: typeof AuthenticatedSidebarRoute
     }
+    '/_authenticated/_sidebar/chats': {
+      id: '/_authenticated/_sidebar/chats'
+      path: '/chats'
+      fullPath: '/chats'
+      preLoaderRoute: typeof AuthenticatedSidebarChatsRouteRouteImport
+      parentRoute: typeof AuthenticatedSidebarRoute
+    }
     '/_authenticated/_sidebar/chats/': {
       id: '/_authenticated/_sidebar/chats/'
-      path: '/chats'
+      path: '/'
       fullPath: '/chats/'
       preLoaderRoute: typeof AuthenticatedSidebarChatsIndexRouteImport
-      parentRoute: typeof AuthenticatedSidebarRoute
+      parentRoute: typeof AuthenticatedSidebarChatsRouteRoute
     }
     '/_authenticated/_sidebar/calendar/': {
       id: '/_authenticated/_sidebar/calendar/'
@@ -133,20 +167,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSidebarCalendarIndexRouteImport
       parentRoute: typeof AuthenticatedSidebarRoute
     }
+    '/_authenticated/_sidebar/chats/$id': {
+      id: '/_authenticated/_sidebar/chats/$id'
+      path: '/$id'
+      fullPath: '/chats/$id'
+      preLoaderRoute: typeof AuthenticatedSidebarChatsIdRouteImport
+      parentRoute: typeof AuthenticatedSidebarChatsRouteRoute
+    }
   }
 }
 
-interface AuthenticatedSidebarRouteChildren {
-  AuthenticatedSidebarIndexRoute: typeof AuthenticatedSidebarIndexRoute
-  AuthenticatedSidebarCalendarIndexRoute: typeof AuthenticatedSidebarCalendarIndexRoute
+interface AuthenticatedSidebarChatsRouteRouteChildren {
+  AuthenticatedSidebarChatsIdRoute: typeof AuthenticatedSidebarChatsIdRoute
   AuthenticatedSidebarChatsIndexRoute: typeof AuthenticatedSidebarChatsIndexRoute
 }
 
+const AuthenticatedSidebarChatsRouteRouteChildren: AuthenticatedSidebarChatsRouteRouteChildren =
+  {
+    AuthenticatedSidebarChatsIdRoute: AuthenticatedSidebarChatsIdRoute,
+    AuthenticatedSidebarChatsIndexRoute: AuthenticatedSidebarChatsIndexRoute,
+  }
+
+const AuthenticatedSidebarChatsRouteRouteWithChildren =
+  AuthenticatedSidebarChatsRouteRoute._addFileChildren(
+    AuthenticatedSidebarChatsRouteRouteChildren,
+  )
+
+interface AuthenticatedSidebarRouteChildren {
+  AuthenticatedSidebarChatsRouteRoute: typeof AuthenticatedSidebarChatsRouteRouteWithChildren
+  AuthenticatedSidebarIndexRoute: typeof AuthenticatedSidebarIndexRoute
+  AuthenticatedSidebarCalendarIndexRoute: typeof AuthenticatedSidebarCalendarIndexRoute
+}
+
 const AuthenticatedSidebarRouteChildren: AuthenticatedSidebarRouteChildren = {
+  AuthenticatedSidebarChatsRouteRoute:
+    AuthenticatedSidebarChatsRouteRouteWithChildren,
   AuthenticatedSidebarIndexRoute: AuthenticatedSidebarIndexRoute,
   AuthenticatedSidebarCalendarIndexRoute:
     AuthenticatedSidebarCalendarIndexRoute,
-  AuthenticatedSidebarChatsIndexRoute: AuthenticatedSidebarChatsIndexRoute,
 }
 
 const AuthenticatedSidebarRouteWithChildren =
