@@ -90,7 +90,7 @@ function ChatListItem({
             <div className="flex px-4 py-2 items-center gap-4 cursor-pointer" />
           }
         >
-          <Link to="/calendar" className="flex items-center gap-4 w-full">
+          <Link to="/chats/$id" params={{ id: chat.id }} className="flex items-center gap-4 w-full">
             <Avatar>
               <AvatarFallback>AV</AvatarFallback>
             </Avatar>
