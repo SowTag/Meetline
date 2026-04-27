@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as WelcomeSplatRouteImport } from './routes/welcome/$'
 import { Route as AuthenticatedSidebarRouteImport } from './routes/_authenticated/_sidebar'
+import { Route as DebugAvatarsIndexRouteImport } from './routes/debug/avatars/index'
 import { Route as AuthenticatedSidebarIndexRouteImport } from './routes/_authenticated/_sidebar/index'
 import { Route as AuthenticatedSidebarChatsRouteRouteImport } from './routes/_authenticated/_sidebar/chats/route'
 import { Route as AuthenticatedSidebarChatsIndexRouteImport } from './routes/_authenticated/_sidebar/chats/index'
@@ -30,6 +31,11 @@ const WelcomeSplatRoute = WelcomeSplatRouteImport.update({
 const AuthenticatedSidebarRoute = AuthenticatedSidebarRouteImport.update({
   id: '/_sidebar',
   getParentRoute: () => AuthenticatedRoute,
+} as any)
+const DebugAvatarsIndexRoute = DebugAvatarsIndexRouteImport.update({
+  id: '/debug/avatars/',
+  path: '/debug/avatars/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedSidebarIndexRoute =
   AuthenticatedSidebarIndexRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
   '/chats': typeof AuthenticatedSidebarChatsRouteRouteWithChildren
+  '/debug/avatars/': typeof DebugAvatarsIndexRoute
   '/chats/$id': typeof AuthenticatedSidebarChatsIdRoute
   '/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
   '/chats/': typeof AuthenticatedSidebarChatsIndexRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof AuthenticatedSidebarIndexRoute
   '/welcome/$': typeof WelcomeSplatRoute
+  '/debug/avatars': typeof DebugAvatarsIndexRoute
   '/chats/$id': typeof AuthenticatedSidebarChatsIdRoute
   '/calendar': typeof AuthenticatedSidebarCalendarIndexRoute
   '/chats': typeof AuthenticatedSidebarChatsIndexRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/welcome/$': typeof WelcomeSplatRoute
   '/_authenticated/_sidebar/chats': typeof AuthenticatedSidebarChatsRouteRouteWithChildren
   '/_authenticated/_sidebar/': typeof AuthenticatedSidebarIndexRoute
+  '/debug/avatars/': typeof DebugAvatarsIndexRoute
   '/_authenticated/_sidebar/chats/$id': typeof AuthenticatedSidebarChatsIdRoute
   '/_authenticated/_sidebar/calendar/': typeof AuthenticatedSidebarCalendarIndexRoute
   '/_authenticated/_sidebar/chats/': typeof AuthenticatedSidebarChatsIndexRoute
@@ -94,11 +103,18 @@ export interface FileRouteTypes {
     | '/'
     | '/welcome/$'
     | '/chats'
+    | '/debug/avatars/'
     | '/chats/$id'
     | '/calendar/'
     | '/chats/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/welcome/$' | '/chats/$id' | '/calendar' | '/chats'
+  to:
+    | '/'
+    | '/welcome/$'
+    | '/debug/avatars'
+    | '/chats/$id'
+    | '/calendar'
+    | '/chats'
   id:
     | '__root__'
     | '/_authenticated'
@@ -106,6 +122,7 @@ export interface FileRouteTypes {
     | '/welcome/$'
     | '/_authenticated/_sidebar/chats'
     | '/_authenticated/_sidebar/'
+    | '/debug/avatars/'
     | '/_authenticated/_sidebar/chats/$id'
     | '/_authenticated/_sidebar/calendar/'
     | '/_authenticated/_sidebar/chats/'
@@ -114,6 +131,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   WelcomeSplatRoute: typeof WelcomeSplatRoute
+  DebugAvatarsIndexRoute: typeof DebugAvatarsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -138,6 +156,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedSidebarRouteImport
       parentRoute: typeof AuthenticatedRoute
+    }
+    '/debug/avatars/': {
+      id: '/debug/avatars/'
+      path: '/debug/avatars'
+      fullPath: '/debug/avatars/'
+      preLoaderRoute: typeof DebugAvatarsIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/_sidebar/': {
       id: '/_authenticated/_sidebar/'
@@ -225,6 +250,7 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   WelcomeSplatRoute: WelcomeSplatRoute,
+  DebugAvatarsIndexRoute: DebugAvatarsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
