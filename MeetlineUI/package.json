@@ -14,7 +14,9 @@
     "format": "prettier --check .",
     "check": "prettier --write . && eslint --fix && tsc",
     "openapi-ts": "openapi-ts",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
@@ -51,8 +53,14 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^5.1.2",
     "@hey-api/openapi-ts": "0.95.0",
     "@hey-api/vite-plugin": "0.2.1",
+    "@storybook/addon-a11y": "^10.3.5",
+    "@storybook/addon-docs": "^10.3.5",
+    "@storybook/addon-themes": "^10.3.5",
+    "@storybook/addon-vitest": "^10.3.5",
+    "@storybook/react-vite": "^10.3.5",
     "@tailwindcss/typography": "^0.5.19",
     "@tanstack/devtools-vite": "latest",
     "@tanstack/eslint-config": "latest",
@@ -63,9 +71,14 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.2.0",
+    "@vitest/browser": "3.2.4",
+    "@vitest/coverage-v8": "3.2.4",
     "babel-plugin-react-compiler": "^1.0.0",
+    "eslint-plugin-storybook": "^10.3.5",
     "jsdom": "^28.1.0",
+    "playwright": "^1.59.1",
     "prettier": "^3.8.3",
+    "storybook": "^10.3.5",
     "typescript": "^5.9.3",
     "vite": "^7.3.2",
     "vite-tsconfig-paths": "^5.1.4",
