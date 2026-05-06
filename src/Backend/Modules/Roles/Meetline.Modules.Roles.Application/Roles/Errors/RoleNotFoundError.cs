@@ -1,5 +1,3 @@
-using Application.Errors.ErrorTypes;
-
 namespace Application.Features.Role.Errors;
 
 public class RoleNotFoundError(Guid id)

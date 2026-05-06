@@ -1,8 +1,5 @@
 using Application.Features.Role.DTOs.CreateRoleRequest;
 using Application.Features.Role.DTOs.RoleResponse;
-using Application.Repositories;
-using FluentResults;
-using Mediator;
 
 namespace Application.Features.Role.CreateRole;
 

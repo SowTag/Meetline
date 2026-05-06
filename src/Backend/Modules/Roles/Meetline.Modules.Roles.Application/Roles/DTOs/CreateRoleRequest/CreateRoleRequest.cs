@@ -1,5 +1,3 @@
-using Domain.Wrappers;
-
 namespace Application.Features.Role.DTOs.CreateRoleRequest;
 
 public record CreateRoleRequest

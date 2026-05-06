@@ -1,5 +1,3 @@
-using FluentValidation;
-
 namespace Application.Features.Role.DTOs.CreateRoleRequest;
 
 public class CreateRoleRequestValidator : AbstractValidator<CreateRoleRequest>

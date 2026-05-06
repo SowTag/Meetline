@@ -1,5 +1,3 @@
-using Riok.Mapperly.Abstractions;
-
 namespace Application.Features.Role.DTOs.CreateRoleRequest;
 
 [Mapper]
