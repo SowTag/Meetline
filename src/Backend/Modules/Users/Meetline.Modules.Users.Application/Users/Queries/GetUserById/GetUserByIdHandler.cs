@@ -2,10 +2,11 @@ using FluentResults;
 using Mediator;
 using Meetline.Modules.Users.Application.Users.DTOs.UserPublicResponse;
 using Meetline.Modules.Users.Application.Users.Errors;
+using Meetline.Modules.Users.Infrastructure.Database;
 
 namespace Meetline.Modules.Users.Application.Users.Queries.GetUserById;
 
-public class GetUserByIdHandler(IUserRepository repository)
+public class GetUserByIdHandler(UsersDbContext context)
     : IQueryHandler<GetUserByIdQuery, Result<UserPublicResponse>>
 {
     private readonly UserPublicResponseMapper _mapper = new();
@@ -13,7 +14,7 @@ public class GetUserByIdHandler(IUserRepository repository)
     public async ValueTask<Result<UserPublicResponse>> Handle(GetUserByIdQuery query,
         CancellationToken cancellationToken)
     {
-        var user = await repository.GetUserById(query.Id, cancellationToken);
+        var user = await context.Users.FindAsync([query.Id], cancellationToken);
 
         return user is null
             ? Result.Fail(new UserNotFoundError(query.Id))
