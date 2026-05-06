@@ -1,7 +1,5 @@
 using Application.Features.User.DTOs.UserResponse;
 using Application.Features.User.Errors;
-using Application.Repositories;
-using Application.Services;
 using FluentResults;
 using Mediator;
 using Microsoft.Extensions.Logging;

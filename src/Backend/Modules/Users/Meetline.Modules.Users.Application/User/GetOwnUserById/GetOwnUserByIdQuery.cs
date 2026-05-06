@@ -1,5 +1,3 @@
-using Application.Common.Caching;
-using Application.Common.Caching.Keys;
 using Application.Features.User.DTOs.UserResponse;
 using FluentResults;
 using Mediator;

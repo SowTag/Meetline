@@ -1,6 +1,5 @@
 using Application.Features.User.DTOs.UserPublicResponse;
 using Application.Features.User.Errors;
-using Application.Repositories;
 using FluentResults;
 using Mediator;
 

@@ -33,10 +33,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Application\Application.csproj"/>
-        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+        <ProjectReference Include="..\Modules\Roles\Meetline.Modules.Roles.Infrastructure\Meetline.Modules.Roles.Infrastructure.csproj"/>
         <ProjectReference Include="..\Modules\SharedKernel\Meetline.Modules.SharedKernel.Application\Meetline.Modules.SharedKernel.Application.csproj"/>
         <ProjectReference Include="..\Modules\SharedKernel\Meetline.Modules.SharedKernel.Domain\Meetline.Modules.SharedKernel.Domain.csproj"/>
+        <ProjectReference Include="..\Modules\Users\Meetline.Modules.Users.Infrastructure\Meetline.Modules.Users.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

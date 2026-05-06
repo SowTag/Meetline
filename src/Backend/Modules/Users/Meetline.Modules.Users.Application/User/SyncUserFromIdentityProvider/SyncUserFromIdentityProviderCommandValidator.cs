@@ -1,4 +1,3 @@
-using Application.Common.Validators;
 using FluentValidation;
 
 namespace Application.Features.User.SyncUserFromIdentityProvider;

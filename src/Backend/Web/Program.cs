@@ -1,9 +1,9 @@
 using System.Text.Json;
 using FluentValidation;
-using Infrastructure;
 using Mediator;
 using Meetline.Modules.SharedKernel.Application.CQRS.Caching;
 using Meetline.Modules.SharedKernel.Application.CQRS.PipelineBehaviors;
+using Meetline.Modules.Users.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Json;
@@ -34,7 +34,6 @@ builder.Services.AddAuthorizationBuilder()
         .Build());
 
 builder.Services
-    .AddInfrastructure(builder.Configuration)
     .AddOpenApi(OpenApiConfiguration.Configure)
     .AddApiVersioning(ApiVersioningConfiguration.Configure);
 
@@ -49,6 +48,8 @@ builder.Services.Configure<JsonOptions>(options =>
 builder.Services.AddScoped<CurrentUserScope>();
 
 builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
+
+builder.Services.AddUsersModule();
 
 var app = builder.Build();
 

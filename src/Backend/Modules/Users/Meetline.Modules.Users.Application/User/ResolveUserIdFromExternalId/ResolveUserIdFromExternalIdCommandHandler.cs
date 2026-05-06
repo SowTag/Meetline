@@ -1,4 +1,3 @@
-using Application.Errors.ErrorTypes;
 using Application.Features.User.DTOs.UserGuidResponse;
 using Application.Features.User.GetUserIdByExternalId;
 using Application.Features.User.SyncUserFromIdentityProvider;

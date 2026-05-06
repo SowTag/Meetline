@@ -1,5 +1,3 @@
-using Application.Errors.ErrorTypes;
-
 namespace Application.Features.User.Errors;
 
 public class IdentityProviderSyncError()
