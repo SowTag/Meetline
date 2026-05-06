@@ -1,9 +1,12 @@
 using Application.Features.Role.DTOs.CreateRoleRequest;
 using Application.Features.Role.DTOs.RoleResponse;
+using FluentResults;
+using Mediator;
+using Meetline.Modules.Roles.Application.Data;
 
 namespace Application.Features.Role.CreateRole;
 
-public class CreateRoleHandler(IRoleRepository repository) : ICommandHandler<CreateRoleCommand, Result<RoleResponse>>
+public class CreateRoleHandler(RolesDbContext context) : ICommandHandler<CreateRoleCommand, Result<RoleResponse>>
 {
     private readonly CreateRoleRequestMapper _requestMapper = new();
     private readonly RoleResponseMapper _responseMapper = new();
@@ -15,8 +18,8 @@ public class CreateRoleHandler(IRoleRepository repository) : ICommandHandler<Cre
         // TODO ManageRoles check
         var role = _requestMapper.ToRole(command.Request);
 
-        await repository.CreateRoleAsync(role, cancellationToken);
-
+        context.Roles.Add(role);
+        await context.SaveChangesAsync(cancellationToken);
         return Result.Ok(_responseMapper.ToResponse(role));
     }
 }
