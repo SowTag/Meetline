@@ -1,11 +1,11 @@
-using Application.Repositories;
-using Domain.Entities;
-using Infrastructure.Data;
+using Meetline.Modules.Users.Application.Repositories;
+using Meetline.Modules.Users.Domain.Entities;
+using Meetline.Modules.Users.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories;
+namespace Meetline.Modules.Users.Infrastructure.Repositories;
 
-public class UserRepository(ApplicationDbContext ctx) : IUserRepository
+internal class UserRepository(UsersDbContext ctx) : IUserRepository
 {
     public Task<User?> GetUserById(Guid id, CancellationToken ct)
     {
