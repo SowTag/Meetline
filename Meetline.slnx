@@ -2,6 +2,21 @@
     <Folder Name="/Solution Items/">
         <File Path="compose.yaml"/>
     </Folder>
+    <Folder Name="/Common module/">
+        <Project
+                Path="src/Backend/Modules/Common/Meetline.Modules.Common.Domain/Meetline.Modules.Common.Domain.csproj"/>
+    </Folder>
+    <Folder Name="/Users module/">
+        <Project
+                Path="src/Backend/Modules/Users/Meetline.Modules.Users.Application/Meetline.Modules.Users.Application.csproj"/>
+        <Project Path="src/Backend/Modules/Users/Meetline.Modules.Users.Domain/Meetline.Modules.Users.Domain.csproj"/>
+    </Folder>
+    <Folder Name="/Roles module/">
+        <Project
+                Path="src/Backend/Modules/Meetline.Modules.Roles.Application/Meetline.Modules.Roles.Application.csproj"/>
+        <Project Path="src/Backend/Modules/Meetline.Modules.Roles.Domain/Meetline.Modules.Roles.Domain.csproj"/>
+    </Folder>
+
     <Project Path="src/Backend/Application.Tests/Application.Tests.csproj"/>
     <Project Path="src/Backend/Application/Application.csproj"/>
     <Project Path="src/Backend/Domain/Domain.csproj"/>
