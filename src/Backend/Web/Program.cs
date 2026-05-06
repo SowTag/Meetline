@@ -49,7 +49,10 @@ builder.Services.AddScoped<CurrentUserScope>();
 
 builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
 
-builder.Services.AddUsersModule();
+builder.Services.AddUsersModule(options =>
+{
+    options.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+});
 
 var app = builder.Build();
 
