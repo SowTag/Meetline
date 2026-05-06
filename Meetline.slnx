@@ -33,7 +33,7 @@
                 Path="src/Backend/Modules/Permissions/Meetline.Modules.Permissions.Domain/Meetline.Modules.Permissions.Domain.csproj"/>
     </Folder>
 
-    <Folder Name="/Legacy/">
+    <Folder Name="/Global/">
         <Project Path="src/Backend/Web/Web.csproj"/>
     </Folder>
 </Solution>
