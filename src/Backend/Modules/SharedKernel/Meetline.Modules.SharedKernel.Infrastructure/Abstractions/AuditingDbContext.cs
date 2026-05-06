@@ -1,7 +1,7 @@
-using Domain.Abstractions;
+using Meetline.Modules.SharedKernel.Domain.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Abstractions;
+namespace Meetline.Modules.SharedKernel.Infrastructure.Abstractions;
 
 public abstract class AuditingDbContext(DbContextOptions options) : DbContext(options)
 {
