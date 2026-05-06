@@ -1,6 +1,4 @@
-using Meetline.Modules.Users.Application.Users.DTOs.UserPublicResponse;
 using Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
-using Meetline.Modules.Users.Application.Users.Queries.GetOwnUserById;
 using Meetline.Modules.Users.Application.Users.Queries.GetUserById;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Web.Extensions;
@@ -29,14 +27,14 @@ public static class UserEndpoints
     private static async Task<Results<Ok<UserResponse>, ForbidHttpResult, ProblemHttpResult>>
         GetCurrentUser(Mediator.Mediator mediator, CurrentUserScope scope)
     {
-        var result = await mediator.Send(new GetOwnUserByIdQuery(scope.Id));
+        var result = await mediator.Send(new GetUserByIdQuery(scope.Id));
 
         return result.IsSuccess
             ? TypedResults.Ok(result.Value)
             : result.ToProblemHttpResult();
     }
 
-    private static async Task<Results<Ok<UserPublicResponse>, NotFound, ProblemHttpResult>>
+    private static async Task<Results<Ok<UserResponse>, NotFound, ProblemHttpResult>>
         GetUserById(Mediator.Mediator mediator, Guid id)
     {
         var result = await mediator.Send(new GetUserByIdQuery(id));
