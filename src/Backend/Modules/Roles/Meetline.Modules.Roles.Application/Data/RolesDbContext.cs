@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Meetline.Modules.Roles.Infrastructure.Database;
 
-internal sealed class RolesDbContext(DbContextOptions options) : AuditingDbContext(options)
+public sealed class RolesDbContext(DbContextOptions options) : AuditingDbContext(options)
 {
     internal DbSet<Role> Roles { get; set; }
 }
