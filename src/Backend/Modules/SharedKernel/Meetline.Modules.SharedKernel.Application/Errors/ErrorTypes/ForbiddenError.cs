@@ -1,3 +1,5 @@
+using Meetline.Modules.SharedKernel.Application.Errors;
+
 namespace Application.Errors.ErrorTypes;
 
 public abstract class ForbiddenError(string code, string title, string message)

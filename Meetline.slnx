@@ -6,7 +6,9 @@
         <Project
                 Path="src/Backend/Modules/SharedKernel/Meetline.Modules.SharedKernel.Infrastructure/Meetline.Modules.SharedKernel.Infrastructure.csproj"/>
         <Project
-                Path="src\Backend\Modules\SharedKernel\Meetline.Modules.SharedKernel.Domain\Meetline.Modules.SharedKernel.Domain.csproj"/>
+                Path="src/Backend/Modules/SharedKernel/Meetline.Modules.SharedKernel.Domain/Meetline.Modules.SharedKernel.Domain.csproj"/>
+        <Project
+                Path="src/Backend/Modules/SharedKernel/Meetline.Modules.SharedKernel.Application/Meetline.Modules.SharedKernel.Application.csproj"/>
     </Folder>
     <Folder Name="/Users module/">
         <Project
@@ -27,10 +29,11 @@
                 Path="src/Backend/Modules/Permissions/Meetline.Modules.Permissions.Domain/Meetline.Modules.Permissions.Domain.csproj"/>
     </Folder>
 
-
-    <Project Path="src/Backend/Application.Tests/Application.Tests.csproj"/>
-    <Project Path="src/Backend/Application/Application.csproj"/>
-    <Project Path="src/Backend/Infrastructure.Tests/Infrastructure.Tests.csproj"/>
-    <Project Path="src/Backend/Infrastructure/Infrastructure.csproj"/>
-    <Project Path="src/Backend/Web/Web.csproj"/>
+    <Folder Name="/Legacy/">
+        <Project Path="src/Backend/Application.Tests/Application.Tests.csproj"/>
+        <Project Path="src/Backend/Application/Application.csproj"/>
+        <Project Path="src/Backend/Infrastructure.Tests/Infrastructure.Tests.csproj"/>
+        <Project Path="src/Backend/Infrastructure/Infrastructure.csproj"/>
+        <Project Path="src/Backend/Web/Web.csproj"/>
+    </Folder>
 </Solution>

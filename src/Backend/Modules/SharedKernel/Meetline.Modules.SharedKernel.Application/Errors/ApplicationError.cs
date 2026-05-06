@@ -1,6 +1,6 @@
 using FluentResults;
 
-namespace Application.Errors;
+namespace Meetline.Modules.SharedKernel.Application.Errors;
 
 public abstract class ApplicationError : Error
 {
