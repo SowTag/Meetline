@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\SharedKernel\Meetline.Modules.SharedKernel.Application\Meetline.Modules.SharedKernel.Application.csproj"/>
+        <ProjectReference Include="..\..\SharedKernel\Meetline.Modules.SharedKernel.Infrastructure\Meetline.Modules.SharedKernel.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Meetline.Modules.Users.Domain\Meetline.Modules.Users.Domain.csproj"/>
+        <ProjectReference Include="..\..\SharedKernel\Meetline.Modules.SharedKernel.Application\Meetline.Modules.SharedKernel.Application.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Users\Commands\"/>
+        <Folder Include="Users\Queries\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+    </ItemGroup>
+
+</Project>
