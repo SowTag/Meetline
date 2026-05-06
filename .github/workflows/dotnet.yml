@@ -29,10 +29,10 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      - name: Test and Collect Coverage
+      - name: Test and collect coverage
         run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --results-directory ./TestResults --collect:"XPlat Code Coverage"
 
-      - name: Publish Test Results to UI
+      - name: Publish test results to UI
         uses: dorny/test-reporter@v3
         if: ${{ !cancelled() }}
         with:
@@ -40,12 +40,12 @@ jobs:
           path: ./TestResults/*.trx
           reporter: dotnet-trx
 
-      - name: Generate Coverage Report
+      - name: Generate coverage report
         uses: danielpalme/ReportGenerator-GitHub-Action@5.5.4
         with:
           reports: '**/coverage.cobertura.xml'
           targetdir: 'coveragereport'
           reporttypes: 'MarkdownSummaryGithub'
 
-      - name: Output Coverage to Job Summary
+      - name: Output coverage to job summary
         run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
