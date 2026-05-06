@@ -1,10 +1,10 @@
-using Application.Features.User.DTOs.UserGuidResponse;
-using Application.Features.User.GetUserIdByExternalId;
-using Application.Features.User.SyncUserFromIdentityProvider;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.Commands.SyncUserFromIdentityProvider;
+using Meetline.Modules.Users.Application.Users.DTOs.UserGuidResponse;
+using Meetline.Modules.Users.Application.Users.Queries.GetUserIdByExternalId;
 
-namespace Application.Features.User.ResolveUserIdFromExternalId;
+namespace Meetline.Modules.Users.Application.Users.Queries.ResolveUserIdFromExternalId;
 
 public class ResolveUserIdFromExternalIdCommandHandler(
     IMediator mediator)

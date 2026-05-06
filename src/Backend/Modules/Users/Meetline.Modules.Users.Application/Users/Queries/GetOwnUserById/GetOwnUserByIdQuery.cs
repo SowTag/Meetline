@@ -1,8 +1,8 @@
-using Application.Features.User.DTOs.UserResponse;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
 
-namespace Application.Features.User.GetOwnUserById;
+namespace Meetline.Modules.Users.Application.Users.Queries.GetOwnUserById;
 
 /// <summary>
 ///     Gets a user from their ID, assuming in a private context. This query might return information considered private

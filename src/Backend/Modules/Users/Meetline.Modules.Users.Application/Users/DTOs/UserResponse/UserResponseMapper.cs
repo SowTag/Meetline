@@ -1,10 +1,11 @@
+using Meetline.Modules.Users.Domain.Entities;
 using Riok.Mapperly.Abstractions;
 
-namespace Application.Features.User.DTOs.UserResponse;
+namespace Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
 
 [Mapper]
 public partial class UserResponseMapper
 {
-    [MapperIgnoreSource(nameof(Domain.Entities.User.ExternalId))]
-    public partial UserResponse ToResponse(Domain.Entities.User user);
+    [MapperIgnoreSource(nameof(User.ExternalId))]
+    public partial UserResponse ToResponse(User user);
 }

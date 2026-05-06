@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.Json;
-using Application.Features.User.DeleteUserByExternalId;
-using Application.Features.User.SyncUserFromIdentityProvider;
+using Meetline.Modules.Users.Application.Users.Commands.DeleteUserByExternalId;
+using Meetline.Modules.Users.Application.Users.Commands.SyncUserFromIdentityProvider;
 using Svix;
 
 namespace Web.Endpoints.Webhooks;

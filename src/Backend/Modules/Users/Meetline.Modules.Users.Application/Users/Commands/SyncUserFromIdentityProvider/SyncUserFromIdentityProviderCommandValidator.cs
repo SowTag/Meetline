@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Features.User.SyncUserFromIdentityProvider;
+namespace Meetline.Modules.Users.Application.Users.Commands.SyncUserFromIdentityProvider;
 
 public class SyncUserFromIdentityProviderCommandValidator : AbstractValidator<SyncUserFromIdentityProviderCommand>
 {

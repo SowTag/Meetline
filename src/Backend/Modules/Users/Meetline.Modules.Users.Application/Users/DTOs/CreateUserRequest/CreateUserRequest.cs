@@ -1,4 +1,4 @@
-namespace Application.Features.User.DTOs.CreateUserRequest;
+namespace Meetline.Modules.Users.Application.Users.DTOs.CreateUserRequest;
 
 public record CreateUserRequest
 {

@@ -1,7 +1,7 @@
 using FluentResults;
 using Mediator;
 
-namespace Application.Features.User.Exists;
+namespace Meetline.Modules.Users.Application.Users.Queries.Exists;
 
 /// <summary>
 ///     Checks if a user exists given their ID

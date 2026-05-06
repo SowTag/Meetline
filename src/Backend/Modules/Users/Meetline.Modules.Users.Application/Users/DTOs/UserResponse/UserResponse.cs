@@ -1,4 +1,4 @@
-namespace Application.Features.User.DTOs.UserResponse;
+namespace Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
 
 public record UserResponse(
     Guid Id,

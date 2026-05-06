@@ -1,7 +1,7 @@
-using Application.Features.User.DTOs.UserPublicResponse;
-using Application.Features.User.DTOs.UserResponse;
-using Application.Features.User.GetOwnUserById;
-using Application.Features.User.GetUserById;
+using Meetline.Modules.Users.Application.Users.DTOs.UserPublicResponse;
+using Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
+using Meetline.Modules.Users.Application.Users.Queries.GetOwnUserById;
+using Meetline.Modules.Users.Application.Users.Queries.GetUserById;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Web.Extensions;
 using Web.Scopes;

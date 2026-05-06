@@ -1,8 +1,8 @@
-using Application.Features.User.Errors;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.Errors;
 
-namespace Application.Features.User.DeleteUserByExternalId;
+namespace Meetline.Modules.Users.Application.Users.Commands.DeleteUserByExternalId;
 
 public class DeleteUserByExternalIdCommandHandler(IUserRepository repository)
     : ICommandHandler<DeleteUserByExternalIdCommand, Result>

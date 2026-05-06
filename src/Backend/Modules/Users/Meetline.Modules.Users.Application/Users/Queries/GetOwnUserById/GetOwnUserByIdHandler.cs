@@ -1,9 +1,9 @@
-using Application.Features.User.DTOs.UserResponse;
-using Application.Features.User.Errors;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
+using Meetline.Modules.Users.Application.Users.Errors;
 
-namespace Application.Features.User.GetOwnUserById;
+namespace Meetline.Modules.Users.Application.Users.Queries.GetOwnUserById;
 
 public class GetOwnUserByIdHandler(IUserRepository repository)
     : IQueryHandler<GetOwnUserByIdQuery, Result<UserResponse>>

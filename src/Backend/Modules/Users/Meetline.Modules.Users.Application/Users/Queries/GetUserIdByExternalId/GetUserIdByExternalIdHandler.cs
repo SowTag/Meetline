@@ -1,9 +1,9 @@
-using Application.Features.User.DTOs.UserGuidResponse;
-using Application.Features.User.Errors;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.DTOs.UserGuidResponse;
+using Meetline.Modules.Users.Application.Users.Errors;
 
-namespace Application.Features.User.GetUserIdByExternalId;
+namespace Meetline.Modules.Users.Application.Users.Queries.GetUserIdByExternalId;
 
 public class GetUserIdByExternalIdHandler(IUserRepository repository)
     : IQueryHandler<GetUserIdByExternalIdQuery, Result<UserGuidResponse>>

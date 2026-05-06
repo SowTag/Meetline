@@ -1,8 +1,8 @@
-using Application.Features.User.Errors;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.Errors;
 
-namespace Application.Features.User.Exists;
+namespace Meetline.Modules.Users.Application.Users.Queries.Exists;
 
 public class ExistsHandler(IUserRepository repository) : IQueryHandler<ExistsQuery, Result<ExistsResponse>>
 {

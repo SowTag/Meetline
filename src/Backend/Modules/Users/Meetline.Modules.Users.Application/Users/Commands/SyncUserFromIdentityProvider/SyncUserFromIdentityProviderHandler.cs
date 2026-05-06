@@ -1,11 +1,11 @@
-using Application.Features.User.DTOs.UserResponse;
-using Application.Features.User.Errors;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
+using Meetline.Modules.Users.Application.Users.Errors;
 using Microsoft.Extensions.Logging;
 using UserSyncDataMapper = Application.Features.User.DTOs.UserSyncData.UserSyncDataMapper;
 
-namespace Application.Features.User.SyncUserFromIdentityProvider;
+namespace Meetline.Modules.Users.Application.Users.Commands.SyncUserFromIdentityProvider;
 
 public class SyncUserFromIdentityProviderHandler(
     ILogger<SyncUserFromIdentityProviderHandler> logger,

@@ -1,8 +1,8 @@
-using Application.Features.User.DTOs.UserGuidResponse;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Users.DTOs.UserGuidResponse;
 
-namespace Application.Features.User.GetUserIdByExternalId;
+namespace Meetline.Modules.Users.Application.Users.Queries.GetUserIdByExternalId;
 
 /// <summary>
 ///     A query for getting a user's internal ID from their external ID

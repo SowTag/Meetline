@@ -1,4 +1,4 @@
-namespace Application.Features.User.Errors;
+namespace Meetline.Modules.Users.Application.Users.Errors;
 
 public class UserNotFoundError(string externalId) : NotFoundError("User.NotFound", "User not found",
     $"User with ID {externalId} not found.")
