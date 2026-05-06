@@ -10,6 +10,10 @@
         <Project
                 Path="src/Backend/Modules/SharedKernel/Meetline.Modules.SharedKernel.Application/Meetline.Modules.SharedKernel.Application.csproj"/>
     </Folder>
+    <Folder Name="/Shared kernel tests/">
+        <Project
+                Path="tests/Backend/Modules/SharedKernel/Meetline.Modules.SharedKernel.Domain.Tests/Meetline.Modules.SharedKernel.Domain.Tests.csproj"/>
+    </Folder>
     <Folder Name="/Users module/">
         <Project
                 Path="src/Backend/Modules/Users/Meetline.Modules.Users.Application/Meetline.Modules.Users.Application.csproj"/>
