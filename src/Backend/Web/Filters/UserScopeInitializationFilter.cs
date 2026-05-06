@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using Meetline.Modules.Users.Application.Users.Queries.ResolveUserIdFromExternalId;
+using Meetline.Modules.Users.Application.Users.Commands.ResolveUserIdFromExternalId;
 using Web.Extensions;
 using Web.Scopes;
 

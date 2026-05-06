@@ -1,4 +1,4 @@
-using Meetline.Modules.Users.Infrastructure.Database;
+using Meetline.Modules.Users.Application.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

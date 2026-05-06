@@ -5,7 +5,7 @@ using Meetline.Modules.Users.Application.Users.Commands.SyncUserFromIdentityProv
 using Meetline.Modules.Users.Application.Users.DTOs.UserGuidResponse;
 using Meetline.Modules.Users.Application.Users.Queries.GetUserIdByExternalId;
 
-namespace Meetline.Modules.Users.Application.Users.Queries.ResolveUserIdFromExternalId;
+namespace Meetline.Modules.Users.Application.Users.Commands.ResolveUserIdFromExternalId;
 
 public class ResolveUserIdFromExternalIdCommandHandler(
     IMediator mediator)

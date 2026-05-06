@@ -1,8 +1,8 @@
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Users.Application.Data;
 using Meetline.Modules.Users.Application.Users.DTOs.UserPublicResponse;
 using Meetline.Modules.Users.Application.Users.Errors;
-using Meetline.Modules.Users.Infrastructure.Database;
 
 namespace Meetline.Modules.Users.Application.Users.Queries.GetUserById;
 

@@ -2,7 +2,7 @@ using FluentResults;
 using Mediator;
 using Meetline.Modules.Users.Application.Users.DTOs.UserGuidResponse;
 
-namespace Meetline.Modules.Users.Application.Users.Queries.ResolveUserIdFromExternalId;
+namespace Meetline.Modules.Users.Application.Users.Commands.ResolveUserIdFromExternalId;
 
 /// <summary>
 ///     Resolves a user's ID from their external ID. That is, if the user is present in the database it will just return
