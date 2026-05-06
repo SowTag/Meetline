@@ -32,7 +32,6 @@
     <Folder Name="/Legacy/">
         <Project Path="src/Backend/Application.Tests/Application.Tests.csproj"/>
         <Project Path="src/Backend/Application/Application.csproj"/>
-        <Project Path="src/Backend/Infrastructure.Tests/Infrastructure.Tests.csproj"/>
         <Project Path="src/Backend/Infrastructure/Infrastructure.csproj"/>
         <Project Path="src/Backend/Web/Web.csproj"/>
     </Folder>
