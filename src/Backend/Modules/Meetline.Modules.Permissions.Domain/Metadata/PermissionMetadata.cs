@@ -19,4 +19,10 @@ public enum PermissionScope
     Room
 }
 
-public record PermissionMetadata(int BitIndex, PermissionScope Scope);
+public record PermissionMetadata(int BitIndex, PermissionScope Scope)
+{
+    public static implicit operator int(PermissionMetadata metadata)
+    {
+        return metadata.BitIndex;
+    }
+}
