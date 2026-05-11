@@ -1,22 +1,22 @@
 using Meetline.Modules.Roles.Application.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Meetline.Modules.Roles.Infrastructure;
 
 public static class RolesModule
 {
-    extension(IServiceCollection services)
+    extension<TBuilder>(TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
-        public IServiceCollection AddRolesModule(Action<RolesModuleOptions> configure)
+        public TBuilder AddRolesModule(Action<RolesModuleOptions> configure)
         {
             var options = new RolesModuleOptions();
-
             configure(options);
+            
+            builder.AddNpgsqlDbContext<RolesDbContext>("postgres-roles");
 
-            services.AddDbContext<RolesDbContext>(db => { db.UseNpgsql(options.ConnectionString); });
-
-            return services;
+            return builder;
         }
     }
 }

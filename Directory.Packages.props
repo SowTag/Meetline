@@ -5,6 +5,7 @@
   <ItemGroup>
     <PackageVersion Include="Asp.Versioning.Http" Version="10.0.0" />
     <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="13.3.0" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="13.3.0" />
     <PackageVersion Include="Clerk.BackendAPI" Version="0.15.4" />
     <PackageVersion Include="FlexLabs.EntityFrameworkCore.Upsert" Version="10.0.0" />
     <PackageVersion Include="FluentResults" Version="4.0.0" />

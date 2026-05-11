@@ -53,8 +53,8 @@ builder.Services.AddScoped<CurrentUserScope>();
 
 builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
 
-builder.Services.AddUsersModule(_ => { });
-builder.Services.AddRolesModule(_ => { });
+builder.AddUsersModule(_ => { });
+builder.AddRolesModule(_ => { });
 
 var app = builder.Build();
 
