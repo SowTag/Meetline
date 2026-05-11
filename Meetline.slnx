@@ -1,7 +1,4 @@
 <Solution>
-    <Folder Name="/Solution Items/">
-        <File Path="compose.yaml" />
-    </Folder>
     <Folder Name="/Shared kernel/">
         <Project Path="src/Backend/Modules/SharedKernel/Meetline.Modules.SharedKernel.Infrastructure/Meetline.Modules.SharedKernel.Infrastructure.csproj" />
         <Project Path="src/Backend/Modules/SharedKernel/Meetline.Modules.SharedKernel.Domain/Meetline.Modules.SharedKernel.Domain.csproj" />
