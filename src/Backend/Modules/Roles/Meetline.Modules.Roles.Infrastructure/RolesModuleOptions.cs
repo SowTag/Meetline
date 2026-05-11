@@ -1,4 +1,4 @@
-namespace Meetline.Modules.Users.Infrastructure;
+namespace Meetline.Modules.Roles.Infrastructure;
 
 public sealed class RolesModuleOptions
 {

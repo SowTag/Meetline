@@ -1,10 +1,10 @@
-using Application.Features.Role.DTOs.CreateRoleRequest;
-using Application.Features.Role.DTOs.RoleResponse;
 using FluentResults;
 using Mediator;
 using Meetline.Modules.Roles.Application.Data;
+using Meetline.Modules.Roles.Application.Roles.DTOs.CreateRoleRequest;
+using Meetline.Modules.Roles.Application.Roles.DTOs.RoleResponse;
 
-namespace Application.Features.Role.CreateRole;
+namespace Meetline.Modules.Roles.Application.Roles.Commands.CreateRole;
 
 public class CreateRoleHandler(RolesDbContext context) : ICommandHandler<CreateRoleCommand, Result<RoleResponse>>
 {

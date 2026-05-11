@@ -1,6 +1,6 @@
 using Riok.Mapperly.Abstractions;
 
-namespace Application.Features.Role.DTOs.RoleResponse;
+namespace Meetline.Modules.Roles.Application.Roles.DTOs.RoleResponse;
 
 [Mapper]
 public partial class RoleResponseMapper

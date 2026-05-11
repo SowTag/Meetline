@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Features.Role.DTOs.CreateRoleRequest;
+namespace Meetline.Modules.Roles.Application.Roles.DTOs.CreateRoleRequest;
 
 public class CreateRoleRequestValidator : AbstractValidator<CreateRoleRequest>
 {

@@ -1,11 +1,11 @@
-using Application.Features.Role.DTOs.CreateRoleRequest;
-using Application.Features.Role.DTOs.RoleResponse;
 using FluentResults;
 using Mediator;
+using Meetline.Modules.Roles.Application.Roles.DTOs.CreateRoleRequest;
+using Meetline.Modules.Roles.Application.Roles.DTOs.RoleResponse;
 using Meetline.Modules.SharedKernel.Application.CQRS.Caching;
 using Meetline.Modules.SharedKernel.Application.CQRS.Caching.Keys;
 
-namespace Application.Features.Role.CreateRole;
+namespace Meetline.Modules.Roles.Application.Roles.Commands.CreateRole;
 
 public record CreateRoleCommand(CreateRoleRequest Request)
     : ICommand<Result<RoleResponse>>, ICacheInvalidatingRequest
