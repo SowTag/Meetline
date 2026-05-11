@@ -4,6 +4,7 @@ using Mediator;
 using Meetline.Modules.SharedKernel.Application.CQRS.Caching;
 using Meetline.Modules.SharedKernel.Application.CQRS.PipelineBehaviors;
 using Meetline.Modules.Users.Infrastructure;
+using Meetline.ServiceDefaults;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Json;
@@ -16,6 +17,8 @@ using Web.Filters;
 using Web.Scopes;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.AddMediator(options => { options.ServiceLifetime = ServiceLifetime.Scoped; });
 // TODO re-enable caching
@@ -55,6 +58,8 @@ builder.Services.AddUsersModule(options =>
 });
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 app.UseAuthentication();
 app.UseAuthorization();
