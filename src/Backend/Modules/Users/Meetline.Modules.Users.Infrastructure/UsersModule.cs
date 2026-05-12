@@ -1,22 +1,46 @@
-using Meetline.Modules.Users.Application.Data;
+using Clerk.BackendAPI;
+using Meetline.Modules.Users.Application.Repositories;
+using Meetline.Modules.Users.Application.Services;
+using Meetline.Modules.Users.Infrastructure.Data;
+using Meetline.Modules.Users.Infrastructure.Repositories;
+using Meetline.Modules.Users.Infrastructure.Services.IdentityProviderClientService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Meetline.Modules.Users.Infrastructure;
 
 public static class UsersModule
 {
-    extension(IServiceCollection services)
+    extension<TBuilder>(TBuilder builder) where TBuilder : IHostApplicationBuilder
     {
-        public IServiceCollection AddUsersModule(Action<UsersModuleOptions> configure)
+        public TBuilder AddUsersModule(Action<UsersModuleOptions> configure)
         {
             var options = new UsersModuleOptions();
-
             configure(options);
 
-            services.AddDbContext<UsersDbContext>(db => { db.UseNpgsql(options.ConnectionString); });
+            builder.AddNpgsqlDbContext<UsersDbContext>("postgres-users",
+                configureDbContextOptions: dbContextOptions =>
+                {
+                    dbContextOptions.UseNpgsql(npgsql =>
+                        npgsql.MigrationsAssembly(typeof(AssemblyReference).Assembly.FullName));
+                });
 
-            return services;
+            builder.AddServices();
+
+            return builder;
+        }
+
+        private TBuilder AddServices()
+        {
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+            builder.Services.AddScoped<IIdentityProviderClientService, ClerkIdentityProviderClientService>();
+
+            var clerkApiKey = builder.Configuration["Clerk:ApiKey"];
+            builder.Services.AddSingleton(new ClerkBackendApi(bearerAuth: clerkApiKey));
+
+            return builder;
         }
     }
 }

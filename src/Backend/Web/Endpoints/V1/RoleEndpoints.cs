@@ -1,8 +1,8 @@
-using Application.Features.Role.CreateRole;
-using Application.Features.Role.DTOs.CreateRoleRequest;
-using Application.Features.Role.DTOs.RoleResponse;
-using Application.Features.Role.GetRoleById;
-using Application.Features.Role.GetRoles;
+using Meetline.Modules.Roles.Application.Roles.Commands.CreateRole;
+using Meetline.Modules.Roles.Application.Roles.DTOs.CreateRoleRequest;
+using Meetline.Modules.Roles.Application.Roles.DTOs.RoleResponse;
+using Meetline.Modules.Roles.Application.Roles.Queries.GetRoleById;
+using Meetline.Modules.Roles.Application.Roles.Queries.GetRoles;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Web.Extensions;

@@ -1,9 +1,11 @@
 using System.Text.Json;
 using FluentValidation;
 using Mediator;
+using Meetline.Modules.Roles.Infrastructure;
 using Meetline.Modules.SharedKernel.Application.CQRS.Caching;
 using Meetline.Modules.SharedKernel.Application.CQRS.PipelineBehaviors;
 using Meetline.Modules.Users.Infrastructure;
+using Meetline.ServiceDefaults;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Json;
@@ -16,6 +18,8 @@ using Web.Filters;
 using Web.Scopes;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.AddMediator(options => { options.ServiceLifetime = ServiceLifetime.Scoped; });
 // TODO re-enable caching
@@ -49,12 +53,12 @@ builder.Services.AddScoped<CurrentUserScope>();
 
 builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
 
-builder.Services.AddUsersModule(options =>
-{
-    options.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
-});
+builder.AddUsersModule(_ => { });
+builder.AddRolesModule(_ => { });
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 app.UseAuthentication();
 app.UseAuthorization();

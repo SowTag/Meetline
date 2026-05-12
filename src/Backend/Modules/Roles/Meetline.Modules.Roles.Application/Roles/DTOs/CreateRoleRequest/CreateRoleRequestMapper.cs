@@ -1,6 +1,6 @@
 using Riok.Mapperly.Abstractions;
 
-namespace Application.Features.Role.DTOs.CreateRoleRequest;
+namespace Meetline.Modules.Roles.Application.Roles.DTOs.CreateRoleRequest;
 
 [Mapper]
 public partial class CreateRoleRequestMapper

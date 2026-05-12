@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Meetline.Modules.Users.Application.Users.Queries.Exists;
 
-public class ExistsHandler(UsersDbContext context) : IQueryHandler<ExistsQuery, Result<ExistsResponse>>
+public class ExistsHandler(IUsersDbContext context) : IQueryHandler<ExistsQuery, Result<ExistsResponse>>
 {
     public async ValueTask<Result<ExistsResponse>> Handle(ExistsQuery query, CancellationToken cancellationToken)
     {

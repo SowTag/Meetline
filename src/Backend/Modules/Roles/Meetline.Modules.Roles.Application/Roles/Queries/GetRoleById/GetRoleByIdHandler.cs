@@ -1,12 +1,12 @@
-using Application.Features.Role.DTOs.RoleResponse;
-using Application.Features.Role.Errors;
 using FluentResults;
 using Mediator;
 using Meetline.Modules.Roles.Application.Data;
+using Meetline.Modules.Roles.Application.Roles.DTOs.RoleResponse;
+using Meetline.Modules.Roles.Application.Roles.Errors;
 
-namespace Application.Features.Role.GetRoleById;
+namespace Meetline.Modules.Roles.Application.Roles.Queries.GetRoleById;
 
-public class GetRoleByIdHandler(RolesDbContext context)
+public class GetRoleByIdHandler(IRolesDbContext context)
     : IQueryHandler<GetRoleByIdQuery, Result<RoleResponse>>
 {
     private readonly RoleResponseMapper _mapper = new();

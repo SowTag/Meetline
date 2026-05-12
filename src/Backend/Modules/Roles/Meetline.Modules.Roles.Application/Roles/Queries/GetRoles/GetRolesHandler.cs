@@ -1,12 +1,12 @@
-using Application.Features.Role.DTOs.RoleResponse;
 using FluentResults;
 using Mediator;
 using Meetline.Modules.Roles.Application.Data;
+using Meetline.Modules.Roles.Application.Roles.DTOs.RoleResponse;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Features.Role.GetRoles;
+namespace Meetline.Modules.Roles.Application.Roles.Queries.GetRoles;
 
-public class GetRolesHandler(RolesDbContext context)
+public class GetRolesHandler(IRolesDbContext context)
     : IQueryHandler<GetRolesQuery, Result<ICollection<RoleResponse>>>
 {
     private readonly RoleResponseMapper _mapper = new();
