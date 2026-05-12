@@ -33,8 +33,8 @@ public static class UsersModule
             
             builder.Services.AddScoped<IIdentityProviderClientService, ClerkIdentityProviderClientService>();
 
-            var clerkApiKey = builder.Configuration["Clerk:Key"];
-            builder.Services.AddSingleton(new ClerkBackendApi(clerkApiKey));
+            var clerkApiKey = builder.Configuration["Clerk:ApiKey"];
+            builder.Services.AddSingleton(new ClerkBackendApi(bearerAuth: clerkApiKey));
 
             return builder;
         }
