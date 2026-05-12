@@ -17,12 +17,18 @@ var usersMigrationService = builder.AddProject<Meetline_Modules_Users_MigrationS
     .WithReference(usersPostgres)
     .WaitFor(usersPostgres);
 
+var rolesMigrationService = builder.AddProject<Meetline_Modules_Roles_MigrationService>("role-service-migrations")
+    .WithReference(rolesPostgres)
+    .WaitFor(rolesPostgres);
+
 
 var backend = builder.AddProject<Web>("meetline-backend")
     .WithReference(usersPostgres)
     .WithReference(rolesPostgres)
     .WithReference(usersMigrationService)
     .WaitForCompletion(usersMigrationService)
+    .WithReference(rolesMigrationService)
+    .WaitForCompletion(rolesMigrationService)
     .WithEnvironment("Clerk__ApiKey", clerkApiKey)
     .WithEnvironment("Clerk__WebhookSecret", clerkWebhookSecret)
     .WaitFor(postgres);
