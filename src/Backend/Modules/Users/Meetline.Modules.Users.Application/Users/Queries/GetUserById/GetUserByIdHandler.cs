@@ -6,7 +6,7 @@ using Meetline.Modules.Users.Application.Users.Errors;
 
 namespace Meetline.Modules.Users.Application.Users.Queries.GetUserById;
 
-public class GetUserByIdHandler(UsersDbContext context)
+public class GetUserByIdHandler(IUsersDbContext context)
     : IQueryHandler<GetUserByIdQuery, Result<UserResponse>>
 {
     private readonly UserResponseMapper _mapper = new();

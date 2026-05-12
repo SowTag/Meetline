@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Meetline.Modules.Users.Application.Users.Queries.GetUserIdByExternalId;
 
-public class GetUserIdByExternalIdHandler(UsersDbContext context)
+public class GetUserIdByExternalIdHandler(IUsersDbContext context)
     : IQueryHandler<GetUserIdByExternalIdQuery, Result<UserGuidResponse>>
 {
     public async ValueTask<Result<UserGuidResponse>> Handle(GetUserIdByExternalIdQuery query,
