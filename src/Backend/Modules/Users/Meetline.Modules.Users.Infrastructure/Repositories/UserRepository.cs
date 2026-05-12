@@ -1,6 +1,6 @@
-using Meetline.Modules.Users.Application.Data;
 using Meetline.Modules.Users.Application.Repositories;
 using Meetline.Modules.Users.Domain.Entities;
+using Meetline.Modules.Users.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Meetline.Modules.Users.Infrastructure.Repositories;

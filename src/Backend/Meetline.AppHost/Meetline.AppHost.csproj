@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Modules\Users\Meetline.Modules.Users.MigrationService\Meetline.Modules.Users.MigrationService.csproj"/>
       <ProjectReference Include="..\Web\Web.csproj" />
     </ItemGroup>
 

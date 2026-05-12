@@ -1,3 +1,5 @@
+using Projects;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var clerkApiKey = builder.AddParameterFromConfiguration("clerk-api-key", "Clerk:ApiKey", secret: true);
@@ -11,11 +13,16 @@ var postgres = builder.AddPostgres("postgres-master")
 var usersPostgres = postgres.AddDatabase("postgres-users");
 var rolesPostgres = postgres.AddDatabase("postgres-roles");
 
+var usersMigrationService = builder.AddProject<Meetline_Modules_Users_MigrationService>("user-service-migrations")
+    .WithReference(usersPostgres)
+    .WaitFor(usersPostgres);
 
 
-var backend = builder.AddProject<Projects.Web>("meetline-backend")
+var backend = builder.AddProject<Web>("meetline-backend")
     .WithReference(usersPostgres)
     .WithReference(rolesPostgres)
+    .WithReference(usersMigrationService)
+    .WaitForCompletion(usersMigrationService)
     .WithEnvironment("Clerk__ApiKey", clerkApiKey)
     .WithEnvironment("Clerk__WebhookSecret", clerkWebhookSecret)
     .WaitFor(postgres);
