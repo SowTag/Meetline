@@ -56,11 +56,11 @@ public static class ResultExtensions
     {
         return error switch
         {
-            ValidationError => StatusCodes.Status400BadRequest,
             UnauthorizedError => StatusCodes.Status401Unauthorized,
             ForbiddenError => StatusCodes.Status403Forbidden,
             NotFoundError => StatusCodes.Status404NotFound,
             ConflictError => StatusCodes.Status409Conflict,
+            ValidationError => StatusCodes.Status422UnprocessableEntity,
             _ => StatusCodes.Status500InternalServerError
         };
     }
