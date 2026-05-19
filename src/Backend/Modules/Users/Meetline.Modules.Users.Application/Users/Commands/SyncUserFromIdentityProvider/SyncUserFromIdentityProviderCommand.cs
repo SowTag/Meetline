@@ -1,0 +1,3 @@
+namespace Meetline.Modules.Users.Application.Users.Commands.SyncUserFromIdentityProvider;
+
+public record SyncUserFromIdentityProviderCommand(string ExternalId);
