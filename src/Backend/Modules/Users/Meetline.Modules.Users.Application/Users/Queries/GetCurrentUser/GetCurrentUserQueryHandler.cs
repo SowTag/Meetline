@@ -7,8 +7,8 @@ namespace Meetline.Modules.Users.Application.Users.Queries.GetCurrentUser;
 
 public static class GetCurrentUserQueryHandler
 {
-    public static Task<UserResponse?> Handle(GetCurrentUserQuery _, 
-        ICallerContext caller, 
+    public static Task<UserResponse?> Handle(GetCurrentUserQuery _,
+        ICallerContext caller,
         IUsersDbContext context,
         CancellationToken cancellationToken)
     {

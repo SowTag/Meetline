@@ -22,9 +22,9 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Host.UseWolverine(options =>
 {
-    options.Discovery.IncludeAssembly(typeof(Meetline.Modules.Users.Infrastructure.AssemblyReference).Assembly);
+    options.Discovery.IncludeAssembly(typeof(AssemblyReference).Assembly);
     options.Discovery.IncludeAssembly(typeof(Meetline.Modules.Users.Application.AssemblyReference).Assembly);
-    
+
     options.Policies.AddMiddleware<ClaimsPrincipalCallerContextProviderMiddleware>(chain =>
         chain.Handlers.Any(h => h.Method.GetParameters().Any(p => p.ParameterType == typeof(ICallerContext))));
 });

@@ -1,10 +1,7 @@
 using System.Security.Claims;
 using Meetline.Modules.SharedKernel.Application.Context;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Web.Scopes;
 using Meetline.Modules.Users.Application.Users.Queries.GetInternalUserId;
+using Web.Scopes;
 using Wolverine;
 
 namespace Web.Middlewares;

@@ -1,7 +1,6 @@
 using Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
 using Meetline.Modules.Users.Application.Users.Queries.GetCurrentUser;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Wolverine;
 
 namespace Web.Endpoints.V1;
@@ -20,10 +19,7 @@ public static class UserEndpoints
     {
         var user = await bus.InvokeAsync<UserResponse?>(new GetCurrentUserQuery());
 
-        if (user is null)
-        {
-            return TypedResults.NotFound();
-        }
+        if (user is null) return TypedResults.NotFound();
 
         return TypedResults.Ok(user);
     }

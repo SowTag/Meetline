@@ -2,9 +2,9 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var clerkApiKey = builder.AddParameterFromConfiguration("clerk-api-key", "Clerk:ApiKey", secret: true);
+var clerkApiKey = builder.AddParameterFromConfiguration("clerk-api-key", "Clerk:ApiKey", true);
 var clerkWebhookSecret =
-    builder.AddParameterFromConfiguration("clerk-webhook-secret", "Clerk:WebhookSecret", secret: true);
+    builder.AddParameterFromConfiguration("clerk-webhook-secret", "Clerk:WebhookSecret", true);
 var clerkPublishableKey = builder.AddParameterFromConfiguration("clerk-publishable-key", "Clerk:PublishableKey");
 
 var postgres = builder.AddPostgres("postgres-master")
