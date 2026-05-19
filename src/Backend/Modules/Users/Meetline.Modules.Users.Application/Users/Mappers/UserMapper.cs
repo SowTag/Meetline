@@ -5,10 +5,15 @@ using Riok.Mapperly.Abstractions;
 namespace Meetline.Modules.Users.Application.Users.Mappers;
 
 [Mapper]
-public partial class UserMapper
+public static partial class UserMapper
 {
-    [MapperIgnoreTarget(nameof(User.Id))]
+    public static User ToEntity(UserSyncData data)
+    {
+        return MapToUser(data, Guid.NewGuid());
+    }
+
+    [MapProperty(nameof(UserSyncData.ExternalId), nameof(User.ExternalId))]
     [MapperIgnoreTarget(nameof(User.CreatedAt))]
     [MapperIgnoreTarget(nameof(User.UpdatedAt))]
-    public partial User ToEntity(UserSyncData data);
+    private static partial User MapToUser(UserSyncData data, Guid id);
 }
