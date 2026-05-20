@@ -1,7 +1,7 @@
-import { AssistantTrigger } from '../assistant/AssistantTrigger'
 import { SidebarTrigger } from '#/components/ui/sidebar.tsx'
 import { useIsMobile } from '#/hooks/use-mobile.ts'
 import { UniversalSearchTrigger } from '#/components/universal-search/UniversalSearchTrigger.tsx'
+import { AssistantTrigger } from '../assistant/AssistantTrigger'
 
 export function MainHeader() {
   const isMobile = useIsMobile()

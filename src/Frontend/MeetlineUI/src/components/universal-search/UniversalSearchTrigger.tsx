@@ -1,8 +1,8 @@
+import { cn } from '#/lib/utils.ts'
+import { Kbd } from '#/components/ui/kbd.tsx'
 import { useUniversalSearch } from './UniversalSearch'
 import type { ComponentProps } from 'react'
 import { Button } from '#/components/ui/button'
-import { Kbd } from '#/components/ui/kbd.tsx'
-import { cn } from '#/lib/utils.ts'
 
 export function UniversalSearchTrigger({
   className,

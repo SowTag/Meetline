@@ -1,6 +1,6 @@
+import { Avatar } from '#/components/avatar/Avatar.tsx'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { AvatarProps } from '#/components/avatar/Avatar.tsx'
-import { Avatar } from '#/components/avatar/Avatar.tsx'
 
 const meta = {
   title: 'UI/Avatar',

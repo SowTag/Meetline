@@ -1,6 +1,5 @@
 import { ChevronsUpDown, CircleUserIcon, LogOutIcon } from 'lucide-react'
 import { useClerk } from '@clerk/react'
-import type { ComponentProps } from 'react'
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -17,6 +16,7 @@ import {
 } from '#/components/ui/dropdown-menu.tsx'
 import { Avatar, AvatarFallback, AvatarImage } from '#/components/ui/avatar.tsx'
 import { useIsMobile } from '#/hooks/use-mobile.ts'
+import type { ComponentProps } from 'react'
 
 export type SidebarUser = {
   emailAddress: string | null

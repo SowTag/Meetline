@@ -1,7 +1,5 @@
 import { CalendarDaysIcon, MessageCircleIcon } from 'lucide-react'
 import { Link } from '@tanstack/react-router'
-import type { ComponentProps } from 'react'
-import type { SidebarUser } from '#/components/sidebar/NavUser.tsx'
 import { NavUser } from '#/components/sidebar/NavUser.tsx'
 import {
   Sidebar,
@@ -20,6 +18,8 @@ import OutlookIcon from '#/components/icons/OutlookIcon.tsx'
 import CanvasLMSIcon from '#/components/icons/CanvasLMSIcon.tsx'
 import { UniversalSearchTrigger } from '#/components/universal-search/UniversalSearchTrigger.tsx'
 import { useIsMobile } from '#/hooks/use-mobile.ts'
+import type { SidebarUser } from '#/components/sidebar/NavUser.tsx'
+import type { ComponentProps } from 'react'
 
 type MainSidebarProps = ComponentProps<typeof Sidebar> & {
   user: SidebarUser | null
