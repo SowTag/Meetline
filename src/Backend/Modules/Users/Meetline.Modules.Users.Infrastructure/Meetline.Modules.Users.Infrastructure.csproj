@@ -7,9 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL"/>
         <PackageReference Include="Clerk.BackendAPI"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL"/>
+        <PackageReference Include="FlexLabs.EntityFrameworkCore.Upsert"/>
     </ItemGroup>
 
     <ItemGroup>

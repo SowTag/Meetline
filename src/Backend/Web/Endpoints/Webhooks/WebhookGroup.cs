@@ -6,7 +6,7 @@ public static class WebhookGroup
     {
         var webhookGroup = app.MapGroup("");
 
-        webhookGroup.MapGroup("clerk").MapClerkWebhooks();
+        webhookGroup.MapClerkWebhookEndpoints();
 
         return webhookGroup;
     }

@@ -1,9 +1,6 @@
 using System.Text.Json;
-using FluentValidation;
-using Mediator;
 using Meetline.Modules.Roles.Infrastructure;
-using Meetline.Modules.SharedKernel.Application.CQRS.Caching;
-using Meetline.Modules.SharedKernel.Application.CQRS.PipelineBehaviors;
+using Meetline.Modules.SharedKernel.Application.Context;
 using Meetline.Modules.Users.Infrastructure;
 using Meetline.ServiceDefaults;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,19 +11,23 @@ using Web.Configs;
 using Web.Converters;
 using Web.Endpoints;
 using Web.Endpoints.V1;
-using Web.Filters;
-using Web.Scopes;
+using Web.Middlewares;
+using Wolverine;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-builder.Services.AddMediator(options => { options.ServiceLifetime = ServiceLifetime.Scoped; });
-// TODO re-enable caching
-// builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddValidatorsFromAssembly(typeof(ICacheService).Assembly);
+builder.Host.UseWolverine(options =>
+{
+    options.Discovery.IncludeAssembly(typeof(AssemblyReference).Assembly);
+    options.Discovery.IncludeAssembly(typeof(Meetline.Modules.Users.Application.AssemblyReference).Assembly);
+
+    options.Policies.AddMiddleware<ClaimsPrincipalCallerContextProviderMiddleware>(chain =>
+        chain.Handlers.Any(h => h.Method.GetParameters().Any(p => p.ParameterType == typeof(ICallerContext))));
+});
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -48,8 +49,6 @@ builder.Services.Configure<JsonOptions>(options =>
     options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
     options.SerializerOptions.Converters.Add(new PermissionSetJsonConverter());
 });
-
-builder.Services.AddScoped<CurrentUserScope>();
 
 builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
 
@@ -74,7 +73,7 @@ if (app.Environment.IsDevelopment())
     app.MapGroup("/api/_debug").AllowAnonymous().MapDebugV1Endpoints();
 }
 
-var root = app.MapGroup("").AddEndpointFilter<UserScopeInitializationFilter>();
+var root = app.MapGroup("");
 
 root.MapEndpoints();
 

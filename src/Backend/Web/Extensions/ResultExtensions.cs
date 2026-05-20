@@ -56,11 +56,11 @@ public static class ResultExtensions
     {
         return error switch
         {
-            ValidationError => StatusCodes.Status400BadRequest,
             UnauthorizedError => StatusCodes.Status401Unauthorized,
             ForbiddenError => StatusCodes.Status403Forbidden,
             NotFoundError => StatusCodes.Status404NotFound,
             ConflictError => StatusCodes.Status409Conflict,
+            ValidationError => StatusCodes.Status422UnprocessableEntity,
             _ => StatusCodes.Status500InternalServerError
         };
     }
@@ -70,11 +70,11 @@ public static class ResultExtensions
         // From table at https://datatracker.ietf.org/doc/html/rfc7231#section-6.1
         return error switch
         {
-            ValidationError => "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1",
             UnauthorizedError => "https://datatracker.ietf.org/doc/html/rfc7235#section-3.1",
             ForbiddenError => "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.3",
             NotFoundError => "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.4",
             ConflictError => "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.8",
+            ValidationError => "https://datatracker.ietf.org/doc/html/rfc9457#section-3-7",
             InternalError => "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1",
             _ => null
         };

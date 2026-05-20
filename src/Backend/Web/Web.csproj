@@ -11,11 +11,6 @@
     <ItemGroup>
         <PackageReference Include="Asp.Versioning.Http"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
-        <PackageReference Include="Mediator.Abstractions"/>
-        <PackageReference Include="Mediator.SourceGenerator">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
@@ -24,6 +19,7 @@
         </PackageReference>
         <PackageReference Include="Scalar.AspNetCore"/>
         <PackageReference Include="Svix"/>
+        <PackageReference Include="WolverineFx"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -33,7 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Meetline.ServiceDefaults\Meetline.ServiceDefaults.csproj" />
+        <ProjectReference Include="..\Meetline.ServiceDefaults\Meetline.ServiceDefaults.csproj"/>
         <ProjectReference Include="..\Modules\Roles\Meetline.Modules.Roles.Infrastructure\Meetline.Modules.Roles.Infrastructure.csproj"/>
         <ProjectReference Include="..\Modules\SharedKernel\Meetline.Modules.SharedKernel.Application\Meetline.Modules.SharedKernel.Application.csproj"/>
         <ProjectReference Include="..\Modules\SharedKernel\Meetline.Modules.SharedKernel.Domain\Meetline.Modules.SharedKernel.Domain.csproj"/>

@@ -1,8 +1,7 @@
 using Meetline.Modules.Users.Application.Users.DTOs.UserResponse;
-using Meetline.Modules.Users.Application.Users.Queries.GetUserById;
+using Meetline.Modules.Users.Application.Users.Queries.GetCurrentUser;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Web.Extensions;
-using Web.Scopes;
+using Wolverine;
 
 namespace Web.Endpoints.V1;
 
@@ -13,34 +12,15 @@ public static class UserEndpoints
         var users = app.MapGroup("")
             .WithTags("Users");
 
-        users.MapGet("/me", GetCurrentUser)
-            .WithName("GetCurrentUser")
-            .WithSummary("Get the currently authenticated user")
-            .WithDescription("Returns the full profile of the user making the request. Requires a valid JWT token.");
-
-        users.MapGet("/{id:guid}", GetUserById)
-            .WithName("GetUserById")
-            .WithSummary("Get user by ID")
-            .WithDescription("Retrieves a user profile by their unique identifier.");
+        users.MapGet("me", GetCurrentUser);
     }
 
-    private static async Task<Results<Ok<UserResponse>, ForbidHttpResult, ProblemHttpResult>>
-        GetCurrentUser(Mediator.Mediator mediator, CurrentUserScope scope)
+    private static async Task<Results<Ok<UserResponse>, NotFound>> GetCurrentUser(IMessageBus bus)
     {
-        var result = await mediator.Send(new GetUserByIdQuery(scope.Id));
+        var user = await bus.InvokeAsync<UserResponse?>(new GetCurrentUserQuery());
 
-        return result.IsSuccess
-            ? TypedResults.Ok(result.Value)
-            : result.ToProblemHttpResult();
-    }
+        if (user is null) return TypedResults.NotFound();
 
-    private static async Task<Results<Ok<UserResponse>, NotFound, ProblemHttpResult>>
-        GetUserById(Mediator.Mediator mediator, Guid id)
-    {
-        var result = await mediator.Send(new GetUserByIdQuery(id));
-
-        return result.IsSuccess
-            ? TypedResults.Ok(result.Value)
-            : result.ToProblemHttpResult();
+        return TypedResults.Ok(user);
     }
 }
