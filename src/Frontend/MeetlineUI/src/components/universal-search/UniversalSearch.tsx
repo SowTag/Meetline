@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { MailIcon, PhoneOutgoingIcon } from 'lucide-react'
 import { create } from 'zustand'
+import { Avatar, AvatarImage } from '#/components/ui/avatar.tsx'
 import { Button } from '#/components/ui/button'
 import {
   Command,
@@ -12,7 +13,6 @@ import {
   CommandList,
   CommandShortcut,
 } from '#/components/ui/command'
-import { Avatar, AvatarImage } from '#/components/ui/avatar.tsx'
 
 type UniversalSearchState = {
   isOpen: boolean

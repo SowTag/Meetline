@@ -1,5 +1,4 @@
 import { ConstructionIcon } from 'lucide-react'
-import type { ComponentProps } from 'react'
 import {
   Empty,
   EmptyDescription,
@@ -7,6 +6,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '#/components/ui/empty.tsx'
+import type { ComponentProps } from 'react'
 
 export function UnderConstruction(props: ComponentProps<typeof Empty>) {
   return (
